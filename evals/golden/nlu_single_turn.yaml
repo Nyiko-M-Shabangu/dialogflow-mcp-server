@@ -27,7 +27,9 @@
 #                      headline metric with and without these cases.
 #   tags               slang, typo, multi-item, a/an-quantity, off-menu,
 #                      paraphrase, numbers-as-words, track-id, chit-chat,
-#                      missing-quantity, synonym, exact-phrase, no-context
+#                      missing-quantity, synonym, exact-phrase, no-context,
+#                      menu-question; added_2026-11-17b marks cases added in
+#                      the 2026-11-17 leftovers round (dev set only).
 #
 # Menu (exact food_Item values): Bunny Chow, Boerewors Roll, Pap & Chakalaka,
 # Bobotie, Vetkoek, Kota, Malva Pudding, Milk Tart, Sosaties.
@@ -156,6 +158,23 @@ cases:
   - {id: add-71, text: "2 kotas and a pizza", expected_intent: order.add, expected_food_Item: [Kota], expected_number: [2], input_contexts: [ongoing-order], tags: [off-menu, multi-item]}
   - {id: add-72, text: "1 bobotie and 2 burgers", expected_intent: order.add, expected_food_Item: [Bobotie], expected_number: [1], input_contexts: [ongoing-order], tags: [off-menu, multi-item]}
 
+  # ------------- order.add: mixed digit + a/an quantities, sizes, typos (added 2026-11-17b)
+  - {id: add-73, text: "2 bunny chows and a milk tart", expected_intent: order.add, expected_food_Item: [Bunny Chow, Milk Tart], expected_number: [2, 1], input_contexts: [ongoing-order], tags: [a/an-quantity, multi-item, added_2026-11-17b]}
+  - {id: add-74, text: "a bobotie and two sosaties", expected_intent: order.add, expected_food_Item: [Bobotie, Sosaties], expected_number: [1, 2], input_contexts: [ongoing-order], tags: [a/an-quantity, multi-item, numbers-as-words, added_2026-11-17b]}
+  - {id: add-75, text: "1 kota and a vetkoek", expected_intent: order.add, expected_food_Item: [Kota, Vetkoek], expected_number: [1, 1], input_contexts: [ongoing-order], tags: [a/an-quantity, multi-item, added_2026-11-17b]}
+  - {id: add-76, text: "an order of kota and 3 vetkoek", expected_intent: order.add, expected_food_Item: [Kota, Vetkoek], expected_number: [1, 3], input_contexts: [ongoing-order], tags: [a/an-quantity, multi-item, paraphrase, added_2026-11-17b]}
+  - {id: add-77, text: "a couple of vetkoeks", expected_intent: order.add, expected_food_Item: [Vetkoek], expected_number: [2], input_contexts: [ongoing-order], tags: [numbers-as-words, added_2026-11-17b]}
+  - {id: add-78, text: "a single bunny chow", expected_intent: order.add, expected_food_Item: [Bunny Chow], expected_number: [1], input_contexts: [ongoing-order], tags: [a/an-quantity, added_2026-11-17b]}
+  - {id: add-79, text: "2 quarter bunnies", expected_intent: order.add, expected_food_Item: [Bunny Chow], expected_number: [2], input_contexts: [ongoing-order], tags: [slang, synonym, added_2026-11-17b]}
+  - {id: add-80, text: "one quarter bunny please", expected_intent: order.add, expected_food_Item: [Bunny Chow], expected_number: [1], input_contexts: [ongoing-order], tags: [slang, synonym, numbers-as-words, added_2026-11-17b]}
+  - {id: add-81, text: "a quarter bunny and 2 kotas", expected_intent: order.add, expected_food_Item: [Bunny Chow, Kota], expected_number: [1, 2], input_contexts: [ongoing-order], tags: [slang, synonym, a/an-quantity, multi-item, added_2026-11-17b]}
+  - {id: add-82, text: "3 vetcooks", expected_intent: order.add, expected_food_Item: [Vetkoek], expected_number: [3], input_contexts: [ongoing-order], tags: [typo, added_2026-11-17b]}
+  - {id: add-83, text: "a vetcook please", expected_intent: order.add, expected_food_Item: [Vetkoek], expected_number: [1], input_contexts: [ongoing-order], tags: [typo, a/an-quantity, added_2026-11-17b]}
+  - {id: add-84, text: "a dozen kotas and a milk tart", expected_intent: order.add, expected_food_Item: [Kota, Milk Tart], expected_number: [12, 1], input_contexts: [ongoing-order], tags: [numbers-as-words, a/an-quantity, multi-item, added_2026-11-17b]}
+  - {id: add-85, text: "a bunny chow and a coke", expected_intent: order.add, expected_food_Item: [Bunny Chow], expected_number: [1], input_contexts: [ongoing-order], tags: [off-menu, multi-item, a/an-quantity, added_2026-11-17b]}
+  - {id: add-86, text: "2 plates of pap and chakalaka", expected_intent: order.add, expected_food_Item: [Pap & Chakalaka], expected_number: [2], input_contexts: [ongoing-order], tags: [paraphrase, added_2026-11-17b]}
+  - {id: add-87, text: "two orders of bobotie", expected_intent: order.add, expected_food_Item: [Bobotie], expected_number: [2], input_contexts: [ongoing-order], tags: [paraphrase, numbers-as-words, added_2026-11-17b]}
+
   # ------------------------------------------------------------ order_remove
   - {id: rem-01, text: "remove the bunny chow", expected_intent: order_remove, expected_food_Item: [Bunny Chow], context: ["new order"], tags: []}
   - {id: rem-02, text: "take off the kota", expected_intent: order_remove, expected_food_Item: [Kota], input_contexts: [ongoing-order], tags: [paraphrase]}
@@ -193,6 +212,11 @@ cases:
   - {id: cmp-14, text: "im dun ordering", expected_intent: order.complete, input_contexts: [ongoing-order], tags: [typo]}
   - {id: cmp-15, text: "finish order", expected_intent: order.complete, input_contexts: [ongoing-order], tags: [paraphrase]}
   - {id: cmp-16, text: "ok done", expected_intent: order.complete, input_contexts: [ongoing-order], tags: [paraphrase]}
+  - {id: cmp-17, text: "thats all", expected_intent: order.complete, verbatim_in_training: true, input_contexts: [ongoing-order], tags: [typo, added_2026-11-17b]}
+  - {id: cmp-18, text: "no thats it", expected_intent: order.complete, input_contexts: [ongoing-order], tags: [typo, paraphrase, added_2026-11-17b]}
+  - {id: cmp-19, text: "thats it", expected_intent: order.complete, verbatim_in_training: true, input_contexts: [ongoing-order], tags: [typo, added_2026-11-17b]}
+  - {id: cmp-20, text: "nope that's everything", expected_intent: order.complete, input_contexts: [ongoing-order], tags: [paraphrase, added_2026-11-17b]}
+  - {id: cmp-21, text: "dats all bru", expected_intent: order.complete, input_contexts: [ongoing-order], tags: [slang, typo, added_2026-11-17b]}
 
   # ------------------------------------------------------ track.order (+ id)
   - {id: trk-01, text: "track order 1005", expected_intent: track.order, expected_number: 1005, verbatim_in_training: true, tags: [track-id, exact-phrase]}
@@ -227,6 +251,19 @@ cases:
   - {id: trm-06, text: "how about order number 999", expected_intent: track.order - more, expected_number: 999, input_contexts: [ongoing-tracking], tags: [track-id]}
   - {id: trm-07, text: "here is my order id 678", expected_intent: track.order - more, expected_number: 678, input_contexts: [ongoing-tracking], tags: [track-id, paraphrase]}
   - {id: trm-08, text: "hw abt 1006", expected_intent: track.order - more, expected_number: 1006, input_contexts: [ongoing-tracking], tags: [track-id, typo, slang]}
+
+  # --------------------------------- menu.ask: availability / price / menu questions (added 2026-11-17b)
+  # A question about the menu must NOT add anything to the order.
+  - {id: mnu-01, text: "do you have bobotie", expected_intent: menu.ask, expected_food_Item: [Bobotie], tags: [menu-question, added_2026-11-17b]}
+  - {id: mnu-02, text: "is the kota available", expected_intent: menu.ask, expected_food_Item: [Kota], input_contexts: [ongoing-order], tags: [menu-question, added_2026-11-17b]}
+  - {id: mnu-03, text: "what's on the menu", expected_intent: menu.ask, expected_food_Item: [], tags: [menu-question, added_2026-11-17b]}
+  - {id: mnu-04, text: "how much is a bunny chow", expected_intent: menu.ask, expected_food_Item: [Bunny Chow], input_contexts: [ongoing-order], tags: [menu-question, added_2026-11-17b]}
+  - {id: mnu-05, text: "do you guys sell vetkoek?", expected_intent: menu.ask, expected_food_Item: [Vetkoek], input_contexts: [ongoing-order], tags: [menu-question, slang, added_2026-11-17b]}
+  - {id: mnu-06, text: "what food do you have", expected_intent: menu.ask, expected_food_Item: [], tags: [menu-question, added_2026-11-17b]}
+  - {id: mnu-07, text: "how much are the sosaties", expected_intent: menu.ask, expected_food_Item: [Sosaties], tags: [menu-question, added_2026-11-17b]}
+  - {id: mnu-08, text: "can I see the menu", expected_intent: menu.ask, expected_food_Item: [], input_contexts: [ongoing-order], tags: [menu-question, added_2026-11-17b]}
+  - {id: mnu-09, text: "is milk tart available today", expected_intent: menu.ask, expected_food_Item: [Milk Tart], tags: [menu-question, added_2026-11-17b]}
+  - {id: mnu-10, text: "what's the price of a kota", expected_intent: menu.ask, expected_food_Item: [Kota], input_contexts: [ongoing-order], tags: [menu-question, added_2026-11-17b]}
 
   # ------------------------------------------ fallback: off-menu in an order
   - {id: fbo-01, text: "I want a pizza", expected_intent: Default Fallback Intent, expected_food_Item: [], input_contexts: [ongoing-order], tags: [off-menu]}

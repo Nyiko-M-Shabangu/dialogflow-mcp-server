@@ -1,0 +1,765 @@
+[
+  {
+    "id": "1a65c549-16a8-4a5e-9144-9951bf7a2804",
+    "data": [
+      {
+        "text": "do you have ",
+        "userDefined": false
+      },
+      {
+        "text": "kota",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "bbde4b53-d68d-4b33-beb5-35ec8c5ea748",
+    "data": [
+      {
+        "text": "do you have ",
+        "userDefined": false
+      },
+      {
+        "text": "bunny chow",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": " today",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "9ebbeb6c-b3c9-4826-8001-3cbc492e55e8",
+    "data": [
+      {
+        "text": "do you guys have ",
+        "userDefined": false
+      },
+      {
+        "text": "vetkoek",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "e63de9a2-954e-4283-9fa9-fa26665481b7",
+    "data": [
+      {
+        "text": "do you sell ",
+        "userDefined": false
+      },
+      {
+        "text": "sosaties",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "0c9b5c4b-f618-42fa-82d2-544ec2797125",
+    "data": [
+      {
+        "text": "do you make ",
+        "userDefined": false
+      },
+      {
+        "text": "milk tart",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c1e50e3e-fb6d-4f5e-aa74-2738cf13d42d",
+    "data": [
+      {
+        "text": "is there any ",
+        "userDefined": false
+      },
+      {
+        "text": "malva pudding",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "f5a19ec7-c2a4-4e71-91db-bb6d9935264d",
+    "data": [
+      {
+        "text": "is ",
+        "userDefined": false
+      },
+      {
+        "text": "bobotie",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": " available",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "25247e21-6dac-4dc7-a19a-d5dfce07849c",
+    "data": [
+      {
+        "text": "is the ",
+        "userDefined": false
+      },
+      {
+        "text": "bunny chow",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": " available today",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "4a4c878a-0a34-4679-b28f-2640435e0de4",
+    "data": [
+      {
+        "text": "are ",
+        "userDefined": false
+      },
+      {
+        "text": "sosaties",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": " available",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "fccdaa8d-2af2-4f5b-bf5e-66c766c84330",
+    "data": [
+      {
+        "text": "have you got ",
+        "userDefined": false
+      },
+      {
+        "text": "pap and chakalaka",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "e26c0a0d-e34c-4cdd-8fb3-0077c9381c99",
+    "data": [
+      {
+        "text": "is ",
+        "userDefined": false
+      },
+      {
+        "text": "kota",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": " on the menu",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "4d07a61b-54e6-48f8-9dbd-b451178ed8e9",
+    "data": [
+      {
+        "text": "how much is the ",
+        "userDefined": false
+      },
+      {
+        "text": "kota",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "949a0885-952f-497f-9a4d-45e3e743f632",
+    "data": [
+      {
+        "text": "how much does a ",
+        "userDefined": false
+      },
+      {
+        "text": "bobotie",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": " cost",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "7cf1c54f-ff92-4ab6-9414-c1d5b238cd15",
+    "data": [
+      {
+        "text": "what does a ",
+        "userDefined": false
+      },
+      {
+        "text": "milk tart",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": " cost",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "cbc1811d-95ff-4b76-a9a6-0be5cdbb5c69",
+    "data": [
+      {
+        "text": "what's the price of ",
+        "userDefined": false
+      },
+      {
+        "text": "sosaties",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "20e311e6-cabc-487d-9865-a244110bafd0",
+    "data": [
+      {
+        "text": "price of a ",
+        "userDefined": false
+      },
+      {
+        "text": "boerewors roll",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ea52bf5b-a8ec-4b2c-b86b-a0e54b9ce9b1",
+    "data": [
+      {
+        "text": "how much are ",
+        "userDefined": false
+      },
+      {
+        "text": "vetkoeks",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "3e9fd245-c889-4569-868d-98d8dd65f916",
+    "data": [
+      {
+        "text": "what is in a ",
+        "userDefined": false
+      },
+      {
+        "text": "bunny chow",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "fdef38a3-5ec8-4c33-b6cf-eb52a24e259b",
+    "data": [
+      {
+        "text": "tell me about the ",
+        "userDefined": false
+      },
+      {
+        "text": "bobotie",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "136fdf9f-1f07-49ea-894e-3cb101f6d77a",
+    "data": [
+      {
+        "text": "are you serving ",
+        "userDefined": false
+      },
+      {
+        "text": "malva pudding",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": " today",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "d6411860-2c81-4b35-bed3-420b86c56915",
+    "data": [
+      {
+        "text": "do you still have ",
+        "userDefined": false
+      },
+      {
+        "text": "melktert",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c9969cdd-937b-41eb-9e75-1df1039e1ee9",
+    "data": [
+      {
+        "text": "any ",
+        "userDefined": false
+      },
+      {
+        "text": "magwinya",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": " left?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "5de476b1-28ef-46b3-9c1e-7a122a59c395",
+    "data": [
+      {
+        "text": "is the ",
+        "userDefined": false
+      },
+      {
+        "text": "boerie roll",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": " still available",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2a6d6028-a89b-4536-9bbf-40d74b02e1a4",
+    "data": [
+      {
+        "text": "do you do ",
+        "userDefined": false
+      },
+      {
+        "text": "quarter bunnies",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "4eae916e-6fc5-427e-980b-d8b3ce5dfcaa",
+    "data": [
+      {
+        "text": "is ",
+        "userDefined": false
+      },
+      {
+        "text": "vetkoek",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": " available now",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2961bd08-18e8-4d7f-933c-622c083d3224",
+    "data": [
+      {
+        "text": "how much for a ",
+        "userDefined": false
+      },
+      {
+        "text": "kota",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "0cbe62cf-8717-44f8-921b-ed3664cd9a32",
+    "data": [
+      {
+        "text": "what's on your menu",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "d814b19e-e01e-49aa-acd1-3a5ca5a724bf",
+    "data": [
+      {
+        "text": "show me the menu",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c0af9557-4809-47c7-87f9-bbe3a2cba1ce",
+    "data": [
+      {
+        "text": "menu please",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "8d68c13f-316b-4f22-9a8e-474d47cee740",
+    "data": [
+      {
+        "text": "what do you have",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "edb13679-f3a9-4c99-bcc6-5bb8095df0c9",
+    "data": [
+      {
+        "text": "what do you sell",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "396acdaf-af3a-41e1-b09e-b5ceddaf6a55",
+    "data": [
+      {
+        "text": "what's available",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "311328fc-0cfa-408c-9347-fd42a349c333",
+    "data": [
+      {
+        "text": "what dishes do you have",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "fb1b67d8-e659-4274-9b76-7bff8a232923",
+    "data": [
+      {
+        "text": "send me the menu",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "50ecfea1-f222-4eb1-b803-7cbe813bf92a",
+    "data": [
+      {
+        "text": "what food is available today",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "9b7bd4fc-3e92-454b-8afe-a9b1cf3ec41b",
+    "data": [
+      {
+        "text": "what are your prices",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "9cc78308-9f59-4edb-90ad-abbfec418c9f",
+    "data": [
+      {
+        "text": "how much does the food cost",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "81b65c56-3e7f-4e75-b6bb-0eea90f0b5b5",
+    "data": [
+      {
+        "text": "what desserts do you have",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "21bebc69-85f9-42af-86b0-fd799976dc73",
+    "data": [
+      {
+        "text": "the menu",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "d3138203-7703-4eab-92b7-3b676e51e2e8",
+    "data": [
+      {
+        "text": "what do you serve",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "cd5e9ef5-8f7b-4adf-8103-5ca53558e48c",
+    "data": [
+      {
+        "text": "what's on offer today",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "7f7d7851-18a4-4cb3-b7c8-3ac5fe674f29",
+    "data": [
+      {
+        "text": "can you tell me what's on the menu",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ccdef792-52d4-47f4-bf1c-025728b6690c",
+    "data": [
+      {
+        "text": "price list please",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

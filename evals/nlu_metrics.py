@@ -36,6 +36,7 @@ INTENTS = (
     "order.complete",
     "track.order",
     "track.order - more",
+    "menu.ask",
 )
 
 ERROR_INTENT = "<error>"
@@ -71,6 +72,9 @@ class Observation:
     reply: str = ""
     latency_ms: float | None = None
     error: str | None = None
+    # Raw composite param of the order_line agent variant (None = not returned).
+    # When present, food_Item / number above are DERIVED from it.
+    order_line: list[dict[str, Any]] | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -130,17 +134,52 @@ def normalize_number(value: Any) -> list[int | float]:
     return out
 
 
+def normalize_order_line(value: Any) -> list[dict[str, Any]]:
+    """order_line: list of {"food_Item": name, "number": n?}; number None when absent."""
+    out = []
+    for line in _as_list(value):
+        if not isinstance(line, dict):
+            continue
+        food = line.get("food_Item")
+        if isinstance(food, list):  # defensive: a sub-entity may arrive as a list
+            food = food[0] if food else None
+        if not isinstance(food, str) or not food.strip():
+            continue
+        out.append({"food_Item": food.strip(), "number": _to_number(line.get("number"))})
+    return out
+
+
+def derive_flat_from_order_line(
+    lines: list[dict[str, Any]],
+) -> tuple[list[str], list[int | float]]:
+    """Flat food_Item / number from order_line lines, aligned; a missing number means 1.
+
+    This is the same rule the MCP server applies (dialogflow_mcp.server_es), so the
+    eval scores exactly what consumers see.
+    """
+    foods = [line["food_Item"] for line in lines]
+    numbers = [1 if line.get("number") is None else line["number"] for line in lines]
+    return foods, numbers
+
+
 def observation_from_query_result(
     query_result: dict[str, Any], latency_ms: float | None = None
 ) -> Observation:
     """Build an Observation from MessageToDict(query_result) (camelCase keys)."""
     params = query_result.get("parameters") or {}
     intent = (query_result.get("intent") or {}).get("displayName") or NO_INTENT
+    order_line = None
+    food, number = normalize_food(params.get("food_Item")), normalize_number(params.get("number"))
+    if "order_line" in params:
+        order_line = normalize_order_line(params.get("order_line"))
+        if order_line:
+            food, number = derive_flat_from_order_line(order_line)
     return Observation(
         intent=intent,
         confidence=float(query_result.get("intentDetectionConfidence") or 0.0),
-        food_Item=normalize_food(params.get("food_Item")),
-        number=normalize_number(params.get("number")),
+        food_Item=food,
+        number=number,
+        order_line=order_line,
         # proto3 omits false booleans from MessageToDict output
         all_required_params_present=bool(query_result.get("allRequiredParamsPresent", False)),
         reply=str(query_result.get("fulfillmentText") or ""),
@@ -293,6 +332,21 @@ def score_turn(expected: dict[str, Any], obs: Observation) -> dict[str, Any]:
         else:
             number_ok = list(obs.number) == list(exp_num)
 
+    # Raw composite check (order_line agent variant only): the (food, quantity)
+    # pairs must match the labels in utterance order, with NO default for a
+    # missing quantity. Informational; `passed` uses the derived flat slots.
+    order_line_ok = None
+    if (
+        obs.order_line is not None
+        and exp_food is not None
+        and exp_num is not None
+        and exp_intent == "order.add"
+        and len(exp_food) == len(exp_num)
+        and not (allow_prompt and prompted and not obs.order_line)
+    ):
+        observed_pairs = [(line["food_Item"], line.get("number")) for line in obs.order_line]
+        order_line_ok = observed_pairs == list(zip(exp_food, exp_num, strict=True))
+
     prompt_ok = allow_prompt or not prompted
     reply_ok = None
     if expected.get("expect_reply"):
@@ -310,6 +364,7 @@ def score_turn(expected: dict[str, Any], obs: Observation) -> dict[str, Any]:
         "intent_ok": intent_ok,
         "food_ok": food_ok,
         "number_ok": number_ok,
+        "order_line_ok": order_line_ok,
         "prompted": prompted,
         "prompt_ok": prompt_ok,
         "reply_ok": reply_ok,
@@ -444,6 +499,13 @@ def slot_metrics(records: list[dict[str, Any]]) -> dict[str, Any]:
             "accuracy": _safe_div(len(correct), len(checked)),
             "checked_given_intent": len(cond),
             "accuracy_given_intent": _safe_div(len(cond_ok), len(cond)),
+        }
+    ol = [r for r in records if r["score"].get("order_line_ok") is not None]
+    if ol:
+        out["order_line_raw"] = {
+            "checked": len(ol),
+            "correct": sum(bool(r["score"]["order_line_ok"]) for r in ol),
+            "accuracy": _safe_div(sum(bool(r["score"]["order_line_ok"]) for r in ol), len(ol)),
         }
     both = [
         r
@@ -754,7 +816,17 @@ def render_report(results: dict[str, Any]) -> str:
         )
     a = s["slots"]["all_slots"]
     w(f"| all labelled slots | {a['checked']} | {_pct(a['accuracy'])} | | |")
+    if "order_line_raw" in s["slots"]:
+        o = s["slots"]["order_line_raw"]
+        w(f"| order_line (raw pairs, no default) | {o['checked']} | {_pct(o['accuracy'])} | | |")
     w("")
+    if "order_line_raw" in s["slots"]:
+        w(
+            "food_Item / number were derived from the composite `order_line` param where the "
+            "agent returned it (missing quantity = 1). The raw row checks the (dish, quantity) "
+            "pairs in utterance order, without the default."
+        )
+        w("")
 
     w("## By tag")
     w("")

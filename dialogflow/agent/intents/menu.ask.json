@@ -1,0 +1,50 @@
+{
+  "id": "6c6b5a34-822b-4964-b08f-1816ed5205f9",
+  "name": "menu.ask",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "1843dd94-24ea-4be8-a9c6-60defd143da1",
+          "name": "food_Item",
+          "required": false,
+          "dataType": "@food_Item",
+          "value": "$food_Item",
+          "defaultValue": "",
+          "isList": true,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "Our menu: Bunny Chow, Boerewors Roll, Pap & Chakalaka, Bobotie, Vetkoek, Kota, Malva Pudding, Milk Tart and Sosaties. Prices and availability are confirmed when you order. To order, say \"New order\" (or, if you're already ordering, just tell me what you'd like, for example \"2 kotas\")."
+          ],
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

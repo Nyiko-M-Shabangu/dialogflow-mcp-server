@@ -312,14 +312,19 @@ def test_heldout_set_is_valid_and_has_no_near_match():
     cases = m.load_cases(leakage.HELDOUT)
     convs = m.load_conversations(leakage.HELDOUT)
     assert 40 <= len(cases) <= 80 and 3 <= len(convs) <= 8
-    assert {c["expected_intent"] for c in cases} == set(m.INTENTS)
+    # The held-out set predates menu.ask (added in 1.1.0) and is never edited.
+    assert {c["expected_intent"] for c in cases} == set(m.INTENTS) - {"menu.ask"}
     assert not any(c.get("verbatim_in_training") for c in cases)
     phrases = [p for _, p in leakage.training_phrases()]
     dev = leakage.dev_texts(
         m.load_cases(run_nlu.DEFAULT_CASES), m.load_conversations(run_nlu.DEFAULT_CONVERSATIONS)
     )
     hits = leakage.near_matches(leakage.heldout_texts(cases, convs), phrases + dev)
-    assert hits == [], "held-out utterances must not resemble training phrases or the dev set"
+    assert leakage.unexpected_heldout_hits(hits) == [], (
+        "held-out utterances must not resemble training phrases or the dev set"
+    )
+    # Every documented exception is still real (drop it once it no longer applies).
+    assert {(h[0], h[1]) for h in hits} == set(leakage.HELDOUT_KNOWN_OVERLAP)
     assert run_nlu.planned_calls(cases, convs) <= 100
 
 
@@ -687,3 +692,88 @@ def test_dialogflow_client_session_paths_without_network(monkeypatch):
     assert client._session("s") == "projects/p/agent/environments/staging/users/-/sessions/s"
     client.location, client.environment = "europe-west2", None
     assert client._session("s") == "projects/p/locations/europe-west2/agent/sessions/s"
+
+
+# ------------------------------------------------------------ order_line variant
+
+
+def test_order_line_derives_flat_slots_aligned():
+    obs = m.observation_from_query_result(
+        {
+            "intent": {"displayName": "order.add"},
+            "allRequiredParamsPresent": True,
+            "parameters": {
+                "order_line": [
+                    {"food_Item": "Kota", "number": "1"},
+                    {"number": 2.0, "food_Item": "Bunny Chow"},
+                    {"food_Item": "Milk Tart"},
+                ]
+            },
+        }
+    )
+    assert obs.food_Item == ["Kota", "Bunny Chow", "Milk Tart"]
+    assert obs.number == [1, 2, 1]
+    assert obs.order_line == [
+        {"food_Item": "Kota", "number": 1},
+        {"food_Item": "Bunny Chow", "number": 2},
+        {"food_Item": "Milk Tart", "number": None},
+    ]
+
+
+def test_flat_params_unchanged_without_order_line():
+    obs = m.observation_from_query_result(
+        {
+            "intent": {"displayName": "order.add"},
+            "parameters": {"food_Item": ["Kota"], "number": [2.0]},
+        }
+    )
+    assert (obs.food_Item, obs.number, obs.order_line) == (["Kota"], [2], None)
+    # old stored observations (no order_line key) still load
+    assert m.Observation.from_dict({"intent": "order.add"}).order_line is None
+
+
+def test_order_line_raw_pairs_scored_without_default():
+    case = {
+        "id": "x",
+        "text": "a kota and 2 bunny chows",
+        "expected_intent": "order.add",
+        "expected_food_Item": ["Kota", "Bunny Chow"],
+        "expected_number": [1, 2],
+    }
+
+    def obs(lines):
+        return m.observation_from_query_result(
+            {
+                "intent": {"displayName": "order.add"},
+                "allRequiredParamsPresent": True,
+                "parameters": {"order_line": lines},
+            }
+        )
+
+    good = m.score_case(
+        case, obs([{"food_Item": "Kota", "number": "1"}, {"food_Item": "Bunny Chow", "number": 2}])
+    )
+    assert good["score"]["passed"] and good["score"]["order_line_ok"] is True
+    # derived flat slots pass (missing -> 1) but the raw pair check does not
+    nodefault = m.score_case(
+        case, obs([{"food_Item": "Kota"}, {"food_Item": "Bunny Chow", "number": 2}])
+    )
+    assert nodefault["score"]["passed"] and nodefault["score"]["order_line_ok"] is False
+    # swapped alignment fails both
+    swapped = m.score_case(
+        case, obs([{"food_Item": "Kota", "number": 2}, {"food_Item": "Bunny Chow", "number": 1}])
+    )
+    assert not swapped["score"]["passed"] and swapped["score"]["order_line_ok"] is False
+    s = m.slot_metrics([good, nodefault, swapped])
+    assert s["order_line_raw"] == {"checked": 3, "correct": 1, "accuracy": 1 / 3}
+    # flat-only records produce no order_line row
+    flat = m.score_case(
+        case,
+        m.observation_from_query_result(
+            {
+                "intent": {"displayName": "order.add"},
+                "parameters": {"food_Item": ["Kota", "Bunny Chow"], "number": [1, 2]},
+            }
+        ),
+    )
+    assert flat["score"]["order_line_ok"] is None and "order_line_raw" not in m.slot_metrics([flat])

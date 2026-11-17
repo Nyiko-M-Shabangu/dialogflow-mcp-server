@@ -11,6 +11,41 @@
     ]
   },
   {
+    "value": "Sosaties",
+    "synonyms": [
+      "Sosaties",
+      "skewers",
+      "sosaties skewers",
+      "sosatie"
+    ]
+  },
+  {
+    "value": "Kota",
+    "synonyms": [
+      "Kota",
+      "skhambane",
+      "spatlo",
+      "kotas"
+    ]
+  },
+  {
+    "value": "Bunny Chow",
+    "synonyms": [
+      "half bunnies",
+      "full bunny",
+      "Bunny Chow",
+      "curry bunny",
+      "quarter bunny chow",
+      "quarter bunny",
+      "bunny chows",
+      "quarter bunny chows",
+      "half bunny",
+      "bunny",
+      "quarter bunnies",
+      "bunnies"
+    ]
+  },
+  {
     "value": "Milk Tart",
     "synonyms": [
       "melktert",
@@ -31,11 +66,14 @@
     "value": "Vetkoek",
     "synonyms": [
       "fat cakes",
+      "fetkoek",
+      "vetcook",
       "fat cake",
       "Vetkoek",
       "vetkoeke",
       "vetkoeks",
-      "magwinya"
+      "magwinya",
+      "vetcooks"
     ]
   },
   {
@@ -47,15 +85,6 @@
     ]
   },
   {
-    "value": "Kota",
-    "synonyms": [
-      "Kota",
-      "skhambane",
-      "spatlo",
-      "kotas"
-    ]
-  },
-  {
     "value": "Boerewors Roll",
     "synonyms": [
       "boerie",
@@ -64,26 +93,6 @@
       "Boerewors Roll",
       "boerewors",
       "boerie roll"
-    ]
-  },
-  {
-    "value": "Bunny Chow",
-    "synonyms": [
-      "Bunny Chow",
-      "curry bunny",
-      "quarter bunny",
-      "bunny chows",
-      "bunny",
-      "bunnies"
-    ]
-  },
-  {
-    "value": "Sosaties",
-    "synonyms": [
-      "Sosaties",
-      "skewers",
-      "sosaties skewers",
-      "sosatie"
     ]
   }
 ]

@@ -70,11 +70,17 @@ conversations:
       - {text: "done", expected_intent: order.complete}
 
   - id: conv-09-missing-quantity-slot-fill
-    description: no quantity given, agent prompts, user answers with a number
+    # Relabelled 2026-11-17b. The quantity is optional with default 1
+    # (deliberate product change in 7c473dc): "I want bunny chow" adds ONE
+    # bunny chow and the bot answers "Added Bunny Chow ... Anything else?";
+    # it never asks "how many?". A bare "2" afterwards answers no pending
+    # question, so the agent must not guess (no item added or changed); the
+    # fallback reply re-prompts. The id is kept so runs stay diffable.
+    description: no quantity given -> default 1, no prompt; a stray bare number is not acted on
     turns:
       - {text: "new order", expected_intent: new.order}
-      - {text: "I want bunny chow", expected_intent: order.add, expected_food_Item: [Bunny Chow], allow_slot_prompt: true, expect_reply: true}
-      - {text: "2", expected_intent: order.add, expected_food_Item: [Bunny Chow], expected_number: [2]}
+      - {text: "I want bunny chow", expected_intent: order.add, expected_food_Item: [Bunny Chow], expected_number: [1], expect_reply: true}
+      - {text: "2", expected_intent: Default Fallback Intent, expected_food_Item: [], expect_reply: true}
       - {text: "that's all", expected_intent: order.complete}
 
   - id: conv-10-greet-then-order
