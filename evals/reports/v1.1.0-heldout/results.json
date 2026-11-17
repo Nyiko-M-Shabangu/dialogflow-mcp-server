@@ -1,0 +1,3001 @@
+{
+  "meta": {
+    "run_name": "v1.1.0-heldout",
+    "started_at": "2026-11-17 22:33:53",
+    "project": "your-gcp-project-id",
+    "environment": null,
+    "location": "global",
+    "language": "en",
+    "concurrency": 4,
+    "max_qpm": 100.0,
+    "golden_fingerprint": "7363338f35fe5798",
+    "cases_file": "heldout.yaml",
+    "conversations_file": "heldout.yaml",
+    "limit": null,
+    "notes": [],
+    "api_calls": 68,
+    "wall_seconds": 40.6
+  },
+  "summary": {
+    "cases": 54,
+    "intent_accuracy": 0.8888888888888888,
+    "macro_f1": 0.8774801587301587,
+    "case_pass_rate": 0.7962962962962963,
+    "excluding_verbatim": {
+      "cases": 54,
+      "excluded": 0,
+      "intent_accuracy": 0.8888888888888888,
+      "macro_f1": 0.8774801587301587,
+      "case_pass_rate": 0.7962962962962963
+    },
+    "unexpected_slot_prompts": 0,
+    "errors": 0,
+    "per_intent": {
+      "Default Fallback Intent": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "support": 5,
+        "tp": 5,
+        "fp": 5,
+        "fn": 0
+      },
+      "Default Welcome Intent": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571428571428571,
+        "support": 4,
+        "tp": 3,
+        "fp": 0,
+        "fn": 1
+      },
+      "new.order": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571428571428571,
+        "support": 4,
+        "tp": 3,
+        "fp": 0,
+        "fn": 1
+      },
+      "order.add": {
+        "precision": 0.95,
+        "recall": 0.95,
+        "f1": 0.9500000000000001,
+        "support": 20,
+        "tp": 19,
+        "fp": 1,
+        "fn": 1
+      },
+      "order.complete": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 6,
+        "tp": 6,
+        "fp": 0,
+        "fn": 0
+      },
+      "order_remove": {
+        "precision": 1.0,
+        "recall": 0.8,
+        "f1": 0.888888888888889,
+        "support": 5,
+        "tp": 4,
+        "fp": 0,
+        "fn": 1
+      },
+      "track.order": {
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1": 0.8,
+        "support": 6,
+        "tp": 4,
+        "fp": 0,
+        "fn": 2
+      },
+      "track.order - more": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 4,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      }
+    },
+    "labels": [
+      "Default Fallback Intent",
+      "Default Welcome Intent",
+      "new.order",
+      "order.add",
+      "order.complete",
+      "order_remove",
+      "track.order",
+      "track.order - more"
+    ],
+    "confusion": {
+      "Default Fallback Intent": {
+        "Default Fallback Intent": 5
+      },
+      "Default Welcome Intent": {
+        "Default Welcome Intent": 3,
+        "Default Fallback Intent": 1
+      },
+      "new.order": {
+        "new.order": 3,
+        "Default Fallback Intent": 1
+      },
+      "order.add": {
+        "order.add": 19,
+        "Default Fallback Intent": 1
+      },
+      "order.complete": {
+        "order.complete": 6
+      },
+      "order_remove": {
+        "order_remove": 4,
+        "order.add": 1
+      },
+      "track.order": {
+        "track.order": 4,
+        "Default Fallback Intent": 2
+      },
+      "track.order - more": {
+        "track.order - more": 4
+      }
+    },
+    "slots": {
+      "food_Item": {
+        "checked": 27,
+        "correct": 26,
+        "accuracy": 0.9629629629629629,
+        "checked_given_intent": 25,
+        "accuracy_given_intent": 1.0
+      },
+      "number": {
+        "checked": 25,
+        "correct": 17,
+        "accuracy": 0.68,
+        "checked_given_intent": 22,
+        "accuracy_given_intent": 0.7727272727272727
+      },
+      "all_slots": {
+        "checked": 35,
+        "correct": 27,
+        "accuracy": 0.7714285714285715
+      }
+    },
+    "tags": {
+      "a/an-quantity": {
+        "n": 6,
+        "intent_accuracy": 0.8333333333333334,
+        "pass_rate": 0.16666666666666666
+      },
+      "chit-chat": {
+        "n": 3,
+        "intent_accuracy": 1.0,
+        "pass_rate": 1.0
+      },
+      "missing-quantity": {
+        "n": 3,
+        "intent_accuracy": 1.0,
+        "pass_rate": 1.0
+      },
+      "multi-item": {
+        "n": 10,
+        "intent_accuracy": 0.9,
+        "pass_rate": 0.5
+      },
+      "no-context": {
+        "n": 2,
+        "intent_accuracy": 1.0,
+        "pass_rate": 1.0
+      },
+      "numbers-as-words": {
+        "n": 5,
+        "intent_accuracy": 1.0,
+        "pass_rate": 0.8
+      },
+      "off-menu": {
+        "n": 2,
+        "intent_accuracy": 1.0,
+        "pass_rate": 1.0
+      },
+      "paraphrase": {
+        "n": 11,
+        "intent_accuracy": 0.9090909090909091,
+        "pass_rate": 0.9090909090909091
+      },
+      "slang": {
+        "n": 20,
+        "intent_accuracy": 0.95,
+        "pass_rate": 0.85
+      },
+      "synonym": {
+        "n": 13,
+        "intent_accuracy": 0.8461538461538461,
+        "pass_rate": 0.5384615384615384
+      },
+      "track-id": {
+        "n": 8,
+        "intent_accuracy": 0.75,
+        "pass_rate": 0.625
+      },
+      "typo": {
+        "n": 11,
+        "intent_accuracy": 0.8181818181818182,
+        "pass_rate": 0.7272727272727273
+      },
+      "untagged": {
+        "n": 3,
+        "intent_accuracy": 1.0,
+        "pass_rate": 1.0
+      }
+    },
+    "latency": {
+      "count": 68,
+      "p50_ms": 395.1325999951223,
+      "p95_ms": 559.4593249916215,
+      "max_ms": 1007.3977000138257,
+      "mean_ms": 418.9300397077151
+    },
+    "conversations": {
+      "n": 5,
+      "passed": 2,
+      "pass_rate": 0.4,
+      "turn_pass_rate": 0.7142857142857143
+    }
+  },
+  "cases": [
+    {
+      "id": "ho-welcome-02",
+      "text": "heita bru",
+      "tags": [
+        "slang"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "Default Welcome Intent",
+        "food_Item": null,
+        "number": null,
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "Default Welcome Intent",
+        "confidence": 0.6219780445098877,
+        "food_Item": [],
+        "number": [],
+        "all_required_params_present": true,
+        "reply": "Hello! You can say \"New order\" to start ordering, or \"Track order\" to check an existing order.",
+        "latency_ms": 594.9833000195213,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": null,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-0293b6e1221440d5"
+    },
+    {
+      "id": "ho-welcome-03",
+      "text": "hie",
+      "tags": [
+        "typo"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "Default Welcome Intent",
+        "food_Item": null,
+        "number": null,
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "Default Fallback Intent",
+        "confidence": 1.0,
+        "food_Item": [],
+        "number": [],
+        "all_required_params_present": true,
+        "reply": "Sorry, I didn't understand. You can say 'New order' or 'Track order'. In an order, choose from our menu: Bunny Chow, Boerewors Roll, Pap & Chakalaka, Bobotie, Vetkoek, Kota, Malva Pudding, Milk Tart and Sosaties, for example \"a bobotie and 2 sosaties\".",
+        "latency_ms": 326.2305000098422,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": false,
+        "food_ok": null,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": false
+      },
+      "failure": "intent Default Welcome Intent -> Default Fallback Intent",
+      "session_id": "eval-035717-1b3be45e459349ca"
+    },
+    {
+      "id": "ho-welcome-05",
+      "text": "howzit bru hows it going",
+      "tags": [
+        "slang",
+        "chit-chat"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "Default Welcome Intent",
+        "food_Item": null,
+        "number": null,
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "Default Welcome Intent",
+        "confidence": 0.5544270277023315,
+        "food_Item": [],
+        "number": [],
+        "all_required_params_present": true,
+        "reply": "Hello! You can say \"New order\" to start ordering, or \"Track order\" to check an existing order.",
+        "latency_ms": 345.2881000121124,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": null,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-4a8781c130b34b02"
+    },
+    {
+      "id": "ho-welcome-06",
+      "text": "sawubona, u good?",
+      "tags": [
+        "slang",
+        "chit-chat"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "Default Welcome Intent",
+        "food_Item": null,
+        "number": null,
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "Default Welcome Intent",
+        "confidence": 0.6159531474113464,
+        "food_Item": [],
+        "number": [],
+        "all_required_params_present": true,
+        "reply": "Hi! Welcome to SA Food Ordering. Say \"New order\" to order food or \"Track order\" to check on an order.",
+        "latency_ms": 356.90849999082275,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": null,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-b0c3b0f88312449b"
+    },
+    {
+      "id": "ho-new-04",
+      "text": "im starving, wanna buy food",
+      "tags": [
+        "paraphrase"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "new.order",
+        "food_Item": null,
+        "number": null,
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "new.order",
+        "confidence": 0.5686553716659546,
+        "food_Item": [],
+        "number": [],
+        "all_required_params_present": true,
+        "reply": "Ok, starting a new order. You can say things like \"2 bunny chows and a milk tart\". Our menu: Bunny Chow, Boerewors Roll, Pap & Chakalaka, Bobotie, Vetkoek, Kota, Malva Pudding, Milk Tart and Sosaties.",
+        "latency_ms": 382.9894000082277,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": null,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-4398339795dc4fe0"
+    },
+    {
+      "id": "ho-new-06",
+      "text": "sharp sharp, i wanna get some food",
+      "tags": [
+        "slang",
+        "paraphrase"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "new.order",
+        "food_Item": null,
+        "number": null,
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "new.order",
+        "confidence": 0.7330043911933899,
+        "food_Item": [],
+        "number": [],
+        "all_required_params_present": true,
+        "reply": "Ok, starting a new order. You can say things like \"2 bunny chows and a milk tart\". Our menu: Bunny Chow, Boerewors Roll, Pap & Chakalaka, Bobotie, Vetkoek, Kota, Malva Pudding, Milk Tart and Sosaties.",
+        "latency_ms": 339.2259000102058,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": null,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-7642d05b0e794af8"
+    },
+    {
+      "id": "ho-new-07",
+      "text": "ngicela ukuoda bru",
+      "tags": [
+        "slang"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "new.order",
+        "food_Item": null,
+        "number": null,
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "Default Fallback Intent",
+        "confidence": 1.0,
+        "food_Item": [],
+        "number": [],
+        "all_required_params_present": true,
+        "reply": "Sorry, I didn't understand. You can say 'New order' or 'Track order'. In an order, choose from our menu: Bunny Chow, Boerewors Roll, Pap & Chakalaka, Bobotie, Vetkoek, Kota, Malva Pudding, Milk Tart and Sosaties, for example \"a bobotie and 2 sosaties\".",
+        "latency_ms": 317.91660000453703,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": false,
+        "food_ok": null,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": false
+      },
+      "failure": "intent new.order -> Default Fallback Intent",
+      "session_id": "eval-035717-74689d1a12e24799"
+    },
+    {
+      "id": "ho-new-08",
+      "text": "wanna ordr for pickup",
+      "tags": [
+        "typo"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "new.order",
+        "food_Item": null,
+        "number": null,
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "new.order",
+        "confidence": 0.6576299667358398,
+        "food_Item": [],
+        "number": [],
+        "all_required_params_present": true,
+        "reply": "Starting a new order. Tell me what you'd like, for example \"one kota and two vetkoek\". Our menu: Bunny Chow, Boerewors Roll, Pap & Chakalaka, Bobotie, Vetkoek, Kota, Malva Pudding, Milk Tart and Sosaties.",
+        "latency_ms": 339.87680001882836,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": null,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-1748cb5555f545dc"
+    },
+    {
+      "id": "ho-add-01",
+      "text": "lemme get 3 boerie rolls",
+      "tags": [
+        "slang",
+        "synonym"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order.add",
+        "food_Item": [
+          "Boerewors Roll"
+        ],
+        "number": [
+          3
+        ],
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "order.add",
+        "confidence": 0.8767756223678589,
+        "food_Item": [
+          "Boerewors Roll"
+        ],
+        "number": [
+          3
+        ],
+        "all_required_params_present": true,
+        "reply": "Added Boerewors Roll to your order. Anything else?",
+        "latency_ms": 1007.3977000138257,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": true,
+        "number_ok": true,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-24ad0a694e104453"
+    },
+    {
+      "id": "ho-add-02",
+      "text": "a bunny n 2 vetkoeks pls",
+      "tags": [
+        "synonym",
+        "multi-item",
+        "a/an-quantity"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order.add",
+        "food_Item": [
+          "Bunny Chow",
+          "Vetkoek"
+        ],
+        "number": [
+          1,
+          2
+        ],
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "order.add",
+        "confidence": 0.8388015031814575,
+        "food_Item": [
+          "Bunny Chow",
+          "Vetkoek"
+        ],
+        "number": [
+          2
+        ],
+        "all_required_params_present": true,
+        "reply": "Got it, Bunny Chow and Vetkoek added. Would you like anything else?",
+        "latency_ms": 381.7752000177279,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": true,
+        "number_ok": false,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": false
+      },
+      "failure": "number [1, 2] -> [2]",
+      "session_id": "eval-035717-16ca3c47d61c4085"
+    },
+    {
+      "id": "ho-add-03",
+      "text": "two kotas and one malva puding",
+      "tags": [
+        "numbers-as-words",
+        "multi-item",
+        "typo"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order.add",
+        "food_Item": [
+          "Kota",
+          "Malva Pudding"
+        ],
+        "number": [
+          2,
+          1
+        ],
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "order.add",
+        "confidence": 0.8999999761581421,
+        "food_Item": [
+          "Kota",
+          "Malva Pudding"
+        ],
+        "number": [
+          2,
+          1
+        ],
+        "all_required_params_present": true,
+        "reply": "Got it, Kota and Malva Pudding added. Would you like anything else?",
+        "latency_ms": 425.1817000040319,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": true,
+        "number_ok": true,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-d459cf9090434db8"
+    },
+    {
+      "id": "ho-add-05",
+      "text": "gimme 1 bobotie",
+      "tags": [
+        "slang"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order.add",
+        "food_Item": [
+          "Bobotie"
+        ],
+        "number": [
+          1
+        ],
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "order.add",
+        "confidence": 1.0,
+        "food_Item": [
+          "Bobotie"
+        ],
+        "number": [
+          1
+        ],
+        "all_required_params_present": true,
+        "reply": "Added Bobotie to your order. Anything else?",
+        "latency_ms": 355.86979999789037,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": true,
+        "number_ok": true,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-50eb517f498c4b46"
+    },
+    {
+      "id": "ho-add-06",
+      "text": "chuck in three fat cakes",
+      "tags": [
+        "slang",
+        "synonym",
+        "numbers-as-words",
+        "paraphrase"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order.add",
+        "food_Item": [
+          "Vetkoek"
+        ],
+        "number": [
+          3
+        ],
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "order.add",
+        "confidence": 0.8460742831230164,
+        "food_Item": [
+          "Vetkoek"
+        ],
+        "number": [
+          3
+        ],
+        "all_required_params_present": true,
+        "reply": "Got it, Vetkoek added. Would you like anything else?",
+        "latency_ms": 338.63419998669997,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": true,
+        "number_ok": true,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-06ec093cdf80438e"
+    },
+    {
+      "id": "ho-add-07",
+      "text": "eish bru i want 2 skhambane and a milk tart",
+      "tags": [
+        "slang",
+        "synonym",
+        "multi-item",
+        "a/an-quantity"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order.add",
+        "food_Item": [
+          "Kota",
+          "Milk Tart"
+        ],
+        "number": [
+          2,
+          1
+        ],
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "order.add",
+        "confidence": 0.7616732120513916,
+        "food_Item": [
+          "Kota",
+          "Milk Tart"
+        ],
+        "number": [
+          2
+        ],
+        "all_required_params_present": true,
+        "reply": "Added Kota and Milk Tart to your order. Anything else?",
+        "latency_ms": 415.5271000054199,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": true,
+        "number_ok": false,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": false
+      },
+      "failure": "number [2, 1] -> [2]",
+      "session_id": "eval-035717-e0c7da0f5b1d4ad0"
+    },
+    {
+      "id": "ho-add-08",
+      "text": "5 magwinya for the kids",
+      "tags": [
+        "synonym"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order.add",
+        "food_Item": [
+          "Vetkoek"
+        ],
+        "number": [
+          5
+        ],
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "order.add",
+        "confidence": 0.8476197123527527,
+        "food_Item": [
+          "Vetkoek"
+        ],
+        "number": [
+          5
+        ],
+        "all_required_params_present": true,
+        "reply": "Got it, Vetkoek added. Would you like anything else?",
+        "latency_ms": 390.78479999443516,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": true,
+        "number_ok": true,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-cb89e41dc24645ea"
+    },
+    {
+      "id": "ho-add-09",
+      "text": "can i hav pap en chakalaka x2",
+      "tags": [
+        "typo",
+        "synonym"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order.add",
+        "food_Item": [
+          "Pap & Chakalaka"
+        ],
+        "number": [
+          2
+        ],
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "order.add",
+        "confidence": 0.6889160871505737,
+        "food_Item": [
+          "Pap & Chakalaka"
+        ],
+        "number": [
+          2
+        ],
+        "all_required_params_present": true,
+        "reply": "Got it, Pap & Chakalaka added. Would you like anything else?",
+        "latency_ms": 390.6847000180278,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": true,
+        "number_ok": true,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-3f1fd5fe19744e42"
+    },
+    {
+      "id": "ho-add-10",
+      "text": "1 bunny, 2 sosatie n a malva",
+      "tags": [
+        "synonym",
+        "multi-item",
+        "a/an-quantity",
+        "typo"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order.add",
+        "food_Item": [
+          "Bunny Chow",
+          "Sosaties",
+          "Malva Pudding"
+        ],
+        "number": [
+          1,
+          2,
+          1
+        ],
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "order.add",
+        "confidence": 0.8987668752670288,
+        "food_Item": [
+          "Bunny Chow",
+          "Sosaties",
+          "Malva Pudding"
+        ],
+        "number": [
+          1,
+          2
+        ],
+        "all_required_params_present": true,
+        "reply": "Added Bunny Chow, Sosaties and Malva Pudding to your order. Anything else?",
+        "latency_ms": 382.9198000021279,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": true,
+        "number_ok": false,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": false
+      },
+      "failure": "number [1, 2, 1] -> [1, 2]",
+      "session_id": "eval-035717-140116d12ecb4c7e"
+    },
+    {
+      "id": "ho-add-11",
+      "text": "throw in a bobotie too",
+      "tags": [
+        "a/an-quantity",
+        "paraphrase"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order.add",
+        "food_Item": [
+          "Bobotie"
+        ],
+        "number": [
+          1
+        ],
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "order.add",
+        "confidence": 0.5897316932678223,
+        "food_Item": [
+          "Bobotie"
+        ],
+        "number": [
+          1
+        ],
+        "all_required_params_present": true,
+        "reply": "Added Bobotie to your order. Anything else?",
+        "latency_ms": 369.09799999557436,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": true,
+        "number_ok": true,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-1f02daf05b7c4566"
+    },
+    {
+      "id": "ho-add-12",
+      "text": "ok so 6 boerewors rolls",
+      "tags": [],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order.add",
+        "food_Item": [
+          "Boerewors Roll"
+        ],
+        "number": [
+          6
+        ],
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "order.add",
+        "confidence": 0.7934356927871704,
+        "food_Item": [
+          "Boerewors Roll"
+        ],
+        "number": [
+          6
+        ],
+        "all_required_params_present": true,
+        "reply": "Got it, Boerewors Roll added. Would you like anything else?",
+        "latency_ms": 407.4786999844946,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": true,
+        "number_ok": true,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-378225798ea8424b"
+    },
+    {
+      "id": "ho-add-13",
+      "text": "ill take a sphatlho",
+      "tags": [
+        "synonym",
+        "a/an-quantity"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order.add",
+        "food_Item": [
+          "Kota"
+        ],
+        "number": [
+          1
+        ],
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "Default Fallback Intent",
+        "confidence": 1.0,
+        "food_Item": [],
+        "number": [],
+        "all_required_params_present": true,
+        "reply": "Sorry, I didn't understand. You can say 'New order' or 'Track order'. In an order, choose from our menu: Bunny Chow, Boerewors Roll, Pap & Chakalaka, Bobotie, Vetkoek, Kota, Malva Pudding, Milk Tart and Sosaties, for example \"a bobotie and 2 sosaties\".",
+        "latency_ms": 438.85320000117645,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": false,
+        "food_ok": false,
+        "number_ok": false,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": false
+      },
+      "failure": "intent order.add -> Default Fallback Intent; food_Item ['Kota'] -> []; number [1] -> []",
+      "session_id": "eval-035717-0e22447bb6234c95"
+    },
+    {
+      "id": "ho-add-15",
+      "text": "add bobotie",
+      "tags": [
+        "missing-quantity"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order.add",
+        "food_Item": [
+          "Bobotie"
+        ],
+        "number": null,
+        "allow_slot_prompt": true
+      },
+      "observed": {
+        "intent": "order.add",
+        "confidence": 1.0,
+        "food_Item": [
+          "Bobotie"
+        ],
+        "number": [
+          1
+        ],
+        "all_required_params_present": true,
+        "reply": "Added Bobotie to your order. Anything else?",
+        "latency_ms": 415.96230000141077,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": true,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-e2d2f1a398b44a17"
+    },
+    {
+      "id": "ho-add-16",
+      "text": "i want malva pudding",
+      "tags": [
+        "missing-quantity"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order.add",
+        "food_Item": [
+          "Malva Pudding"
+        ],
+        "number": null,
+        "allow_slot_prompt": true
+      },
+      "observed": {
+        "intent": "order.add",
+        "confidence": 1.0,
+        "food_Item": [
+          "Malva Pudding"
+        ],
+        "number": [
+          1
+        ],
+        "all_required_params_present": true,
+        "reply": "Added Malva Pudding to your order. Anything else?",
+        "latency_ms": 538.3741999976337,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": true,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-77c7ccace3e14121"
+    },
+    {
+      "id": "ho-add-17",
+      "text": "some vetkoek n sosaties pls",
+      "tags": [
+        "missing-quantity",
+        "multi-item"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order.add",
+        "food_Item": [
+          "Vetkoek",
+          "Sosaties"
+        ],
+        "number": null,
+        "allow_slot_prompt": true
+      },
+      "observed": {
+        "intent": "order.add",
+        "confidence": 0.7911553978919983,
+        "food_Item": [
+          "Vetkoek",
+          "Sosaties"
+        ],
+        "number": [
+          1
+        ],
+        "all_required_params_present": true,
+        "reply": "Added Vetkoek and Sosaties to your order. Anything else?",
+        "latency_ms": 404.3482999841217,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": true,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-9e709018f3314d7a"
+    },
+    {
+      "id": "ho-add-19",
+      "text": "ten sosaties for the braai",
+      "tags": [
+        "numbers-as-words"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order.add",
+        "food_Item": [
+          "Sosaties"
+        ],
+        "number": [
+          10
+        ],
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "order.add",
+        "confidence": 0.8183048367500305,
+        "food_Item": [
+          "Sosaties"
+        ],
+        "number": [
+          10
+        ],
+        "all_required_params_present": true,
+        "reply": "Added Sosaties to your order. Anything else?",
+        "latency_ms": 462.86650002002716,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": true,
+        "number_ok": true,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-268d7b25ce7e4e8e"
+    },
+    {
+      "id": "ho-add-20",
+      "text": "yoh lemme get a boerie roll n 2 pap n chakalaka",
+      "tags": [
+        "slang",
+        "synonym",
+        "multi-item",
+        "a/an-quantity"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order.add",
+        "food_Item": [
+          "Boerewors Roll",
+          "Pap & Chakalaka"
+        ],
+        "number": [
+          1,
+          2
+        ],
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "order.add",
+        "confidence": 0.8549543619155884,
+        "food_Item": [
+          "Boerewors Roll",
+          "Pap & Chakalaka"
+        ],
+        "number": [
+          2
+        ],
+        "all_required_params_present": true,
+        "reply": "Got it, Boerewors Roll and Pap & Chakalaka added. Would you like anything else?",
+        "latency_ms": 473.7201999814715,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": true,
+        "number_ok": false,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": false
+      },
+      "failure": "number [1, 2] -> [2]",
+      "session_id": "eval-035717-0da3cfb9c8814e88"
+    },
+    {
+      "id": "ho-add-21",
+      "text": "plus 2 bobotis",
+      "tags": [
+        "typo"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order.add",
+        "food_Item": [
+          "Bobotie"
+        ],
+        "number": [
+          2
+        ],
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "order.add",
+        "confidence": 0.9181694984436035,
+        "food_Item": [
+          "Bobotie"
+        ],
+        "number": [
+          2
+        ],
+        "all_required_params_present": true,
+        "reply": "Got it, Bobotie added. Would you like anything else?",
+        "latency_ms": 470.4527999856509,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": true,
+        "number_ok": true,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-694988ef0701462e"
+    },
+    {
+      "id": "ho-add-23",
+      "text": "milktart x3 n bunny x1",
+      "tags": [
+        "typo",
+        "synonym",
+        "multi-item"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order.add",
+        "food_Item": [
+          "Milk Tart",
+          "Bunny Chow"
+        ],
+        "number": [
+          3,
+          1
+        ],
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "order.add",
+        "confidence": 0.6717425584793091,
+        "food_Item": [
+          "Milk Tart",
+          "Bunny Chow"
+        ],
+        "number": [
+          3,
+          1
+        ],
+        "all_required_params_present": true,
+        "reply": "Added Milk Tart and Bunny Chow to your order. Anything else?",
+        "latency_ms": 501.37879999238066,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": true,
+        "number_ok": true,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-f2ce930671d74729"
+    },
+    {
+      "id": "ho-add-24",
+      "text": "sharp, put down 2 kotas, 1 bobotie and three sosaties",
+      "tags": [
+        "slang",
+        "multi-item",
+        "numbers-as-words"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order.add",
+        "food_Item": [
+          "Kota",
+          "Bobotie",
+          "Sosaties"
+        ],
+        "number": [
+          2,
+          1,
+          3
+        ],
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "order.add",
+        "confidence": 0.8670040965080261,
+        "food_Item": [
+          "Kota",
+          "Bobotie",
+          "Sosaties"
+        ],
+        "number": [
+          2,
+          1,
+          3
+        ],
+        "all_required_params_present": true,
+        "reply": "Got it, Kota, Bobotie and Sosaties added. Would you like anything else?",
+        "latency_ms": 465.74109999346547,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": true,
+        "number_ok": true,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-d0af3bd044474040"
+    },
+    {
+      "id": "ho-remove-03",
+      "text": "nah scrap the milk tart",
+      "tags": [
+        "slang",
+        "paraphrase"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order_remove",
+        "food_Item": [
+          "Milk Tart"
+        ],
+        "number": null,
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "order_remove",
+        "confidence": 0.5886965990066528,
+        "food_Item": [
+          "Milk Tart"
+        ],
+        "number": [],
+        "all_required_params_present": true,
+        "reply": "I have removed Milk Tart",
+        "latency_ms": 538.801999995485,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": true,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-e9af874f03c54fa7"
+    },
+    {
+      "id": "ho-remove-04",
+      "text": "eish i dont want the sosaties anymore",
+      "tags": [
+        "slang",
+        "paraphrase"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order_remove",
+        "food_Item": [
+          "Sosaties"
+        ],
+        "number": null,
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "order_remove",
+        "confidence": 0.8999999761581421,
+        "food_Item": [
+          "Sosaties"
+        ],
+        "number": [],
+        "all_required_params_present": true,
+        "reply": "I have removed Sosaties",
+        "latency_ms": 570.5824999895412,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": true,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-bce6a662a78f4c28"
+    },
+    {
+      "id": "ho-remove-05",
+      "text": "drop the boerie roll n the vetkoek",
+      "tags": [
+        "synonym",
+        "multi-item"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order_remove",
+        "food_Item": [
+          "Boerewors Roll",
+          "Vetkoek"
+        ],
+        "number": null,
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "order.add",
+        "confidence": 0.6047750115394592,
+        "food_Item": [
+          "Boerewors Roll",
+          "Vetkoek"
+        ],
+        "number": [
+          1
+        ],
+        "all_required_params_present": true,
+        "reply": "Added Boerewors Roll and Vetkoek to your order. Anything else?",
+        "latency_ms": 469.9165000056382,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": false,
+        "food_ok": true,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": false
+      },
+      "failure": "intent order_remove -> order.add",
+      "session_id": "eval-035717-a77d87ad4bf0495e"
+    },
+    {
+      "id": "ho-remove-07",
+      "text": "skip the fat cakes bru",
+      "tags": [
+        "synonym",
+        "slang"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order_remove",
+        "food_Item": [
+          "Vetkoek"
+        ],
+        "number": null,
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "order_remove",
+        "confidence": 0.7078530192375183,
+        "food_Item": [
+          "Vetkoek"
+        ],
+        "number": [],
+        "all_required_params_present": true,
+        "reply": "I have removed Vetkoek",
+        "latency_ms": 651.7977000039537,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": true,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-067dfa576f8c49b0"
+    },
+    {
+      "id": "ho-remove-08",
+      "text": "remov bunny pls",
+      "tags": [
+        "typo",
+        "synonym"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order_remove",
+        "food_Item": [
+          "Bunny Chow"
+        ],
+        "number": null,
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "order_remove",
+        "confidence": 0.789638102054596,
+        "food_Item": [
+          "Bunny Chow"
+        ],
+        "number": [],
+        "all_required_params_present": true,
+        "reply": "I have removed Bunny Chow",
+        "latency_ms": 501.08970000292175,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": true,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-c83d014f590844f1"
+    },
+    {
+      "id": "ho-complete-01",
+      "text": "thats all thanks",
+      "tags": [],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order.complete",
+        "food_Item": null,
+        "number": null,
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "order.complete",
+        "confidence": 1.0,
+        "food_Item": [],
+        "number": [],
+        "all_required_params_present": true,
+        "reply": "Great, I'm placing your order now.",
+        "latency_ms": 419.33260002406314,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": null,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-44d4e5dfaac14b02"
+    },
+    {
+      "id": "ho-complete-02",
+      "text": "sharp im done",
+      "tags": [
+        "slang"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order.complete",
+        "food_Item": null,
+        "number": null,
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "order.complete",
+        "confidence": 0.8054398894309998,
+        "food_Item": [],
+        "number": [],
+        "all_required_params_present": true,
+        "reply": "Great, I'm placing your order now.",
+        "latency_ms": 378.03059999714606,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": null,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-925533c6a02b4840"
+    },
+    {
+      "id": "ho-complete-03",
+      "text": "nah thats it bru",
+      "tags": [
+        "slang"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order.complete",
+        "food_Item": null,
+        "number": null,
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "order.complete",
+        "confidence": 0.8792277574539185,
+        "food_Item": [],
+        "number": [],
+        "all_required_params_present": true,
+        "reply": "Great, I'm placing your order now.",
+        "latency_ms": 527.2161999891978,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": null,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-5e83f688896b42c7"
+    },
+    {
+      "id": "ho-complete-04",
+      "text": "done ordering, checkout",
+      "tags": [
+        "paraphrase"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order.complete",
+        "food_Item": null,
+        "number": null,
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "order.complete",
+        "confidence": 0.7968984246253967,
+        "food_Item": [],
+        "number": [],
+        "all_required_params_present": true,
+        "reply": "Great, I'm placing your order now.",
+        "latency_ms": 534.071900008712,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": null,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-b6c8c39a469c46d6"
+    },
+    {
+      "id": "ho-complete-05",
+      "text": "finish my order pls",
+      "tags": [],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order.complete",
+        "food_Item": null,
+        "number": null,
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "order.complete",
+        "confidence": 0.6710832118988037,
+        "food_Item": [],
+        "number": [],
+        "all_required_params_present": true,
+        "reply": "Great, I'm placing your order now.",
+        "latency_ms": 497.19939997885376,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": null,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-3f4aef28d41c4181"
+    },
+    {
+      "id": "ho-complete-07",
+      "text": "nothing else, place it",
+      "tags": [
+        "paraphrase"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "order.complete",
+        "food_Item": null,
+        "number": null,
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "order.complete",
+        "confidence": 0.7974317669868469,
+        "food_Item": [],
+        "number": [],
+        "all_required_params_present": true,
+        "reply": "Great, I'm placing your order now.",
+        "latency_ms": 485.0655000191182,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": null,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-36b3b844804e4821"
+    },
+    {
+      "id": "ho-track-02",
+      "text": "status of 73?",
+      "tags": [
+        "track-id"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "track.order",
+        "food_Item": null,
+        "number": [
+          73
+        ],
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "track.order",
+        "confidence": 0.4934573471546173,
+        "food_Item": [],
+        "number": [
+          73
+        ],
+        "all_required_params_present": true,
+        "reply": "Got it. Checking the status of order #73.",
+        "latency_ms": 439.8835000174586,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": null,
+        "number_ok": true,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-8239ffa0a3834801"
+    },
+    {
+      "id": "ho-track-03",
+      "text": "eish its been an hour, order 30915 still not here",
+      "tags": [
+        "track-id",
+        "slang",
+        "paraphrase"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "track.order",
+        "food_Item": null,
+        "number": [
+          30915
+        ],
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "track.order",
+        "confidence": 0.5712489485740662,
+        "food_Item": [],
+        "number": [
+          30915
+        ],
+        "all_required_params_present": true,
+        "reply": "Got it. Checking the status of order #30915.",
+        "latency_ms": 453.425799991237,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": null,
+        "number_ok": true,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-26d9869b1ae94ce1"
+    },
+    {
+      "id": "ho-track-04",
+      "text": "hows my food coming? no 512",
+      "tags": [
+        "track-id",
+        "paraphrase"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "track.order",
+        "food_Item": null,
+        "number": [
+          512
+        ],
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "Default Fallback Intent",
+        "confidence": 1.0,
+        "food_Item": [],
+        "number": [],
+        "all_required_params_present": true,
+        "reply": "Sorry, I didn't understand. You can say 'New order' or 'Track order'. In an order, choose from our menu: Bunny Chow, Boerewors Roll, Pap & Chakalaka, Bobotie, Vetkoek, Kota, Malva Pudding, Milk Tart and Sosaties, for example \"a bobotie and 2 sosaties\".",
+        "latency_ms": 398.01810000790283,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": false,
+        "food_ok": null,
+        "number_ok": false,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": false
+      },
+      "failure": "intent track.order -> Default Fallback Intent; number [512] -> []",
+      "session_id": "eval-035717-cf6f938868164963"
+    },
+    {
+      "id": "ho-track-05",
+      "text": "any news on ordr 9087",
+      "tags": [
+        "track-id",
+        "typo"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "track.order",
+        "food_Item": null,
+        "number": [
+          9087
+        ],
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "Default Fallback Intent",
+        "confidence": 1.0,
+        "food_Item": [],
+        "number": [],
+        "all_required_params_present": true,
+        "reply": "Sorry, I didn't understand. You can say 'New order' or 'Track order'. In an order, choose from our menu: Bunny Chow, Boerewors Roll, Pap & Chakalaka, Bobotie, Vetkoek, Kota, Malva Pudding, Milk Tart and Sosaties, for example \"a bobotie and 2 sosaties\".",
+        "latency_ms": 361.2839999841526,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": false,
+        "food_ok": null,
+        "number_ok": false,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": false
+      },
+      "failure": "intent track.order -> Default Fallback Intent; number [9087] -> []",
+      "session_id": "eval-035717-7b1cd267ecd44216"
+    },
+    {
+      "id": "ho-track-07",
+      "text": "track my ordr pls",
+      "tags": [
+        "typo"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "track.order",
+        "food_Item": null,
+        "number": null,
+        "allow_slot_prompt": true
+      },
+      "observed": {
+        "intent": "track.order",
+        "confidence": 0.776352047920227,
+        "food_Item": [],
+        "number": [],
+        "all_required_params_present": false,
+        "reply": "Sure. Please enter your order id.",
+        "latency_ms": 361.13879998447374,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": null,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": true,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-d0a47980df8248a2"
+    },
+    {
+      "id": "ho-track-08",
+      "text": "yoh is my order on the way?",
+      "tags": [
+        "slang"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "track.order",
+        "food_Item": null,
+        "number": null,
+        "allow_slot_prompt": true
+      },
+      "observed": {
+        "intent": "track.order",
+        "confidence": 0.7352094054222107,
+        "food_Item": [],
+        "number": [],
+        "all_required_params_present": false,
+        "reply": "Sure. Please enter your order id.",
+        "latency_ms": 392.24709998234175,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": null,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": true,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-ea9d2d5544fe4ae0"
+    },
+    {
+      "id": "ho-trackmore-01",
+      "text": "and 2290?",
+      "tags": [
+        "track-id"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "track.order - more",
+        "food_Item": null,
+        "number": [
+          2290
+        ],
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "track.order - more",
+        "confidence": 0.7771368026733398,
+        "food_Item": [],
+        "number": [
+          2290
+        ],
+        "all_required_params_present": true,
+        "reply": "Checking the status of order #2290.",
+        "latency_ms": 324.445599981118,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": null,
+        "number_ok": true,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-0739d19f31ad46b1"
+    },
+    {
+      "id": "ho-trackmore-02",
+      "text": "wat about 16",
+      "tags": [
+        "track-id",
+        "typo"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "track.order - more",
+        "food_Item": null,
+        "number": [
+          16
+        ],
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "track.order - more",
+        "confidence": 0.9321333169937134,
+        "food_Item": [],
+        "number": [
+          16
+        ],
+        "all_required_params_present": true,
+        "reply": "Checking the status of order #16.",
+        "latency_ms": 363.41630000970326,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": null,
+        "number_ok": true,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-20242850014c44d5"
+    },
+    {
+      "id": "ho-trackmore-03",
+      "text": "ok check 40017 too",
+      "tags": [
+        "track-id",
+        "paraphrase"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "track.order - more",
+        "food_Item": null,
+        "number": [
+          40017
+        ],
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "track.order - more",
+        "confidence": 0.7613261938095093,
+        "food_Item": [],
+        "number": [
+          40017
+        ],
+        "all_required_params_present": true,
+        "reply": "Checking the status of order #40017.",
+        "latency_ms": 345.4714000108652,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": null,
+        "number_ok": true,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-f2fdf13f78b34a99"
+    },
+    {
+      "id": "ho-trackmore-04",
+      "text": "n my other one, number one hundred and twelve?",
+      "tags": [
+        "track-id",
+        "numbers-as-words"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "track.order - more",
+        "food_Item": null,
+        "number": [
+          112
+        ],
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "track.order - more",
+        "confidence": 0.3530494272708893,
+        "food_Item": [],
+        "number": [
+          1
+        ],
+        "all_required_params_present": true,
+        "reply": "Checking the status of order #1.",
+        "latency_ms": 442.09399999817833,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": null,
+        "number_ok": false,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": false
+      },
+      "failure": "number [112] -> [1]",
+      "session_id": "eval-035717-3ec8fdcfcf99429e"
+    },
+    {
+      "id": "ho-fallback-01",
+      "text": "lemme get 2 burgers n a coke",
+      "tags": [
+        "off-menu",
+        "multi-item",
+        "slang"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "Default Fallback Intent",
+        "food_Item": [],
+        "number": null,
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "Default Fallback Intent",
+        "confidence": 1.0,
+        "food_Item": [],
+        "number": [],
+        "all_required_params_present": true,
+        "reply": "Sorry, I didn't understand. You can say 'New order' or 'Track order'. In an order, choose from our menu: Bunny Chow, Boerewors Roll, Pap & Chakalaka, Bobotie, Vetkoek, Kota, Malva Pudding, Milk Tart and Sosaties, for example \"a bobotie and 2 sosaties\".",
+        "latency_ms": 356.9490000081714,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": true,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-a20c18ad7fb346e0"
+    },
+    {
+      "id": "ho-fallback-02",
+      "text": "add a large pizza",
+      "tags": [
+        "off-menu"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "Default Fallback Intent",
+        "food_Item": [],
+        "number": null,
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "Default Fallback Intent",
+        "confidence": 1.0,
+        "food_Item": [],
+        "number": [],
+        "all_required_params_present": true,
+        "reply": "Sorry, I didn't understand. You can say 'New order' or 'Track order'. In an order, choose from our menu: Bunny Chow, Boerewors Roll, Pap & Chakalaka, Bobotie, Vetkoek, Kota, Malva Pudding, Milk Tart and Sosaties, for example \"a bobotie and 2 sosaties\".",
+        "latency_ms": 405.06050002295524,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": true,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-3b18b118651a4b1a"
+    },
+    {
+      "id": "ho-fallback-03",
+      "text": "who won the derby on saturday bru",
+      "tags": [
+        "chit-chat",
+        "slang"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "Default Fallback Intent",
+        "food_Item": null,
+        "number": null,
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "Default Fallback Intent",
+        "confidence": 1.0,
+        "food_Item": [],
+        "number": [],
+        "all_required_params_present": true,
+        "reply": "Sorry, I didn't understand. You can say 'New order' or 'Track order'. In an order, choose from our menu: Bunny Chow, Boerewors Roll, Pap & Chakalaka, Bobotie, Vetkoek, Kota, Malva Pudding, Milk Tart and Sosaties, for example \"a bobotie and 2 sosaties\".",
+        "latency_ms": 342.09910000208765,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": null,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-3692a96b4ceb4608"
+    },
+    {
+      "id": "ho-fallback-04",
+      "text": "take the bobotie off",
+      "tags": [
+        "no-context"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "Default Fallback Intent",
+        "food_Item": null,
+        "number": null,
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "Default Fallback Intent",
+        "confidence": 1.0,
+        "food_Item": [],
+        "number": [],
+        "all_required_params_present": true,
+        "reply": "Sorry, I didn't understand. You can say 'New order' or 'Track order'. In an order, choose from our menu: Bunny Chow, Boerewors Roll, Pap & Chakalaka, Bobotie, Vetkoek, Kota, Malva Pudding, Milk Tart and Sosaties, for example \"a bobotie and 2 sosaties\".",
+        "latency_ms": 329.38300000387244,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": null,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-e3b62acf8c074d06"
+    },
+    {
+      "id": "ho-fallback-05",
+      "text": "thats all im done",
+      "tags": [
+        "no-context"
+      ],
+      "verbatim_in_training": false,
+      "expected": {
+        "intent": "Default Fallback Intent",
+        "food_Item": null,
+        "number": null,
+        "allow_slot_prompt": false
+      },
+      "observed": {
+        "intent": "Default Fallback Intent",
+        "confidence": 1.0,
+        "food_Item": [],
+        "number": [],
+        "all_required_params_present": true,
+        "reply": "Sorry, I didn't understand. You can say 'New order' or 'Track order'. In an order, choose from our menu: Bunny Chow, Boerewors Roll, Pap & Chakalaka, Bobotie, Vetkoek, Kota, Malva Pudding, Milk Tart and Sosaties, for example \"a bobotie and 2 sosaties\".",
+        "latency_ms": 319.51949998619966,
+        "error": null,
+        "order_line": null
+      },
+      "score": {
+        "intent_ok": true,
+        "food_ok": null,
+        "number_ok": null,
+        "order_line_ok": null,
+        "prompted": false,
+        "prompt_ok": true,
+        "reply_ok": null,
+        "passed": true
+      },
+      "failure": null,
+      "session_id": "eval-035717-730245e3d8a44591"
+    }
+  ],
+  "conversations": [
+    {
+      "id": "ho-conv-01-full-order",
+      "description": "start an order, add items incl. a multi-item a/an message, add more, finish",
+      "passed": false,
+      "turns_passed": 3,
+      "turns_total": 4,
+      "first_failure": {
+        "turn": 2,
+        "text": "2 kotas n a malva pudding",
+        "failure": "number [2, 1] -> [2]"
+      },
+      "turns": [
+        {
+          "turn": 1,
+          "text": "yo i wanna order",
+          "expected_intent": "new.order",
+          "observed": {
+            "intent": "new.order",
+            "confidence": 0.72220778465271,
+            "food_Item": [],
+            "number": [],
+            "all_required_params_present": true,
+            "reply": "Starting a new order. Tell me what you'd like, for example \"one kota and two vetkoek\". Our menu: Bunny Chow, Boerewors Roll, Pap & Chakalaka, Bobotie, Vetkoek, Kota, Malva Pudding, Milk Tart and Sosaties.",
+            "latency_ms": 360.362699982943,
+            "error": null,
+            "order_line": null
+          },
+          "score": {
+            "intent_ok": true,
+            "food_ok": null,
+            "number_ok": null,
+            "order_line_ok": null,
+            "prompted": false,
+            "prompt_ok": true,
+            "reply_ok": true,
+            "passed": true
+          },
+          "failure": null
+        },
+        {
+          "turn": 2,
+          "text": "2 kotas n a malva pudding",
+          "expected_intent": "order.add",
+          "observed": {
+            "intent": "order.add",
+            "confidence": 1.0,
+            "food_Item": [
+              "Kota",
+              "Malva Pudding"
+            ],
+            "number": [
+              2
+            ],
+            "all_required_params_present": true,
+            "reply": "Added Kota and Malva Pudding to your order. Anything else?",
+            "latency_ms": 359.1475000139326,
+            "error": null,
+            "order_line": null
+          },
+          "score": {
+            "intent_ok": true,
+            "food_ok": true,
+            "number_ok": false,
+            "order_line_ok": null,
+            "prompted": false,
+            "prompt_ok": true,
+            "reply_ok": true,
+            "passed": false
+          },
+          "failure": "number [2, 1] -> [2]"
+        },
+        {
+          "turn": 3,
+          "text": "plus a vetkoek",
+          "expected_intent": "order.add",
+          "observed": {
+            "intent": "order.add",
+            "confidence": 1.0,
+            "food_Item": [
+              "Vetkoek"
+            ],
+            "number": [
+              1
+            ],
+            "all_required_params_present": true,
+            "reply": "Got it, Vetkoek added. Would you like anything else?",
+            "latency_ms": 421.6504000069108,
+            "error": null,
+            "order_line": null
+          },
+          "score": {
+            "intent_ok": true,
+            "food_ok": true,
+            "number_ok": true,
+            "order_line_ok": null,
+            "prompted": false,
+            "prompt_ok": true,
+            "reply_ok": true,
+            "passed": true
+          },
+          "failure": null
+        },
+        {
+          "turn": 4,
+          "text": "sharp thats all",
+          "expected_intent": "order.complete",
+          "observed": {
+            "intent": "order.complete",
+            "confidence": 0.7335906624794006,
+            "food_Item": [],
+            "number": [],
+            "all_required_params_present": true,
+            "reply": "Great, I'm placing your order now.",
+            "latency_ms": 343.3902000251692,
+            "error": null,
+            "order_line": null
+          },
+          "score": {
+            "intent_ok": true,
+            "food_ok": null,
+            "number_ok": null,
+            "order_line_ok": null,
+            "prompted": false,
+            "prompt_ok": true,
+            "reply_ok": true,
+            "passed": true
+          },
+          "failure": null
+        }
+      ],
+      "session_id": "eval-035717-5e8e3ce33b874056"
+    },
+    {
+      "id": "ho-conv-02-add-remove",
+      "description": "start, add two items, remove one, finish",
+      "passed": false,
+      "turns_passed": 2,
+      "turns_total": 3,
+      "first_failure": {
+        "turn": 2,
+        "text": "3 sosaties and a bobotie",
+        "failure": "number [3, 1] -> [3]"
+      },
+      "turns": [
+        {
+          "turn": 1,
+          "text": "start an order pls",
+          "expected_intent": "new.order",
+          "observed": {
+            "intent": "new.order",
+            "confidence": 0.7789270877838135,
+            "food_Item": [],
+            "number": [],
+            "all_required_params_present": true,
+            "reply": "Ok, starting a new order. You can say things like \"2 bunny chows and a milk tart\". Our menu: Bunny Chow, Boerewors Roll, Pap & Chakalaka, Bobotie, Vetkoek, Kota, Malva Pudding, Milk Tart and Sosaties.",
+            "latency_ms": 337.0938999869395,
+            "error": null,
+            "order_line": null
+          },
+          "score": {
+            "intent_ok": true,
+            "food_ok": null,
+            "number_ok": null,
+            "order_line_ok": null,
+            "prompted": false,
+            "prompt_ok": true,
+            "reply_ok": true,
+            "passed": true
+          },
+          "failure": null
+        },
+        {
+          "turn": 2,
+          "text": "3 sosaties and a bobotie",
+          "expected_intent": "order.add",
+          "observed": {
+            "intent": "order.add",
+            "confidence": 1.0,
+            "food_Item": [
+              "Sosaties",
+              "Bobotie"
+            ],
+            "number": [
+              3
+            ],
+            "all_required_params_present": true,
+            "reply": "Got it, Sosaties and Bobotie added. Would you like anything else?",
+            "latency_ms": 352.8173000086099,
+            "error": null,
+            "order_line": null
+          },
+          "score": {
+            "intent_ok": true,
+            "food_ok": true,
+            "number_ok": false,
+            "order_line_ok": null,
+            "prompted": false,
+            "prompt_ok": true,
+            "reply_ok": true,
+            "passed": false
+          },
+          "failure": "number [3, 1] -> [3]"
+        },
+        {
+          "turn": 3,
+          "text": "actually take out the bobotie",
+          "expected_intent": "order_remove",
+          "observed": {
+            "intent": "order_remove",
+            "confidence": 0.5466515421867371,
+            "food_Item": [
+              "Bobotie"
+            ],
+            "number": [],
+            "all_required_params_present": true,
+            "reply": "I have removed Bobotie",
+            "latency_ms": 337.7663000137545,
+            "error": null,
+            "order_line": null
+          },
+          "score": {
+            "intent_ok": true,
+            "food_ok": true,
+            "number_ok": null,
+            "order_line_ok": null,
+            "prompted": false,
+            "prompt_ok": true,
+            "reply_ok": true,
+            "passed": true
+          },
+          "failure": null
+        }
+      ],
+      "session_id": "eval-035717-322016e2772344f2"
+    },
+    {
+      "id": "ho-conv-03-track-more",
+      "description": "track an order by id, then ask about another id",
+      "passed": true,
+      "turns_passed": 2,
+      "turns_total": 2,
+      "first_failure": null,
+      "turns": [
+        {
+          "turn": 1,
+          "text": "wheres order 6150",
+          "expected_intent": "track.order",
+          "observed": {
+            "intent": "track.order",
+            "confidence": 1.0,
+            "food_Item": [],
+            "number": [
+              6150
+            ],
+            "all_required_params_present": true,
+            "reply": "Got it. Checking the status of order #6150.",
+            "latency_ms": 407.6999000099022,
+            "error": null,
+            "order_line": null
+          },
+          "score": {
+            "intent_ok": true,
+            "food_ok": null,
+            "number_ok": true,
+            "order_line_ok": null,
+            "prompted": false,
+            "prompt_ok": true,
+            "reply_ok": true,
+            "passed": true
+          },
+          "failure": null
+        },
+        {
+          "turn": 2,
+          "text": "and 812?",
+          "expected_intent": "track.order - more",
+          "observed": {
+            "intent": "track.order - more",
+            "confidence": 0.7771368026733398,
+            "food_Item": [],
+            "number": [
+              812
+            ],
+            "all_required_params_present": true,
+            "reply": "Checking the status of order #812.",
+            "latency_ms": 366.7295000050217,
+            "error": null,
+            "order_line": null
+          },
+          "score": {
+            "intent_ok": true,
+            "food_ok": null,
+            "number_ok": true,
+            "order_line_ok": null,
+            "prompted": false,
+            "prompt_ok": true,
+            "reply_ok": true,
+            "passed": true
+          },
+          "failure": null
+        }
+      ],
+      "session_id": "eval-035717-9637661fae634eb5"
+    },
+    {
+      "id": "ho-conv-04-track-slot-fill",
+      "description": "track without an id, bot asks, user replies with just the id (same intent via slot filling)",
+      "passed": false,
+      "turns_passed": 0,
+      "turns_total": 2,
+      "first_failure": {
+        "turn": 1,
+        "text": "is my order ready yet",
+        "failure": "intent track.order -> new.order"
+      },
+      "turns": [
+        {
+          "turn": 1,
+          "text": "is my order ready yet",
+          "expected_intent": "track.order",
+          "observed": {
+            "intent": "new.order",
+            "confidence": 0.7623953223228455,
+            "food_Item": [],
+            "number": [],
+            "all_required_params_present": true,
+            "reply": "Starting a new order. Tell me what you'd like, for example \"one kota and two vetkoek\". Our menu: Bunny Chow, Boerewors Roll, Pap & Chakalaka, Bobotie, Vetkoek, Kota, Malva Pudding, Milk Tart and Sosaties.",
+            "latency_ms": 398.87659999658354,
+            "error": null,
+            "order_line": null
+          },
+          "score": {
+            "intent_ok": false,
+            "food_ok": null,
+            "number_ok": null,
+            "order_line_ok": null,
+            "prompted": false,
+            "prompt_ok": true,
+            "reply_ok": true,
+            "passed": false
+          },
+          "failure": "intent track.order -> new.order"
+        },
+        {
+          "turn": 2,
+          "text": "70334",
+          "expected_intent": "track.order",
+          "observed": {
+            "intent": "Default Fallback Intent",
+            "confidence": 1.0,
+            "food_Item": [],
+            "number": [],
+            "all_required_params_present": true,
+            "reply": "Sorry, I didn't understand. You can say 'New order' or 'Track order'. In an order, choose from our menu: Bunny Chow, Boerewors Roll, Pap & Chakalaka, Bobotie, Vetkoek, Kota, Malva Pudding, Milk Tart and Sosaties, for example \"a bobotie and 2 sosaties\".",
+            "latency_ms": 417.2675000154413,
+            "error": null,
+            "order_line": null
+          },
+          "score": {
+            "intent_ok": false,
+            "food_ok": null,
+            "number_ok": false,
+            "order_line_ok": null,
+            "prompted": false,
+            "prompt_ok": true,
+            "reply_ok": true,
+            "passed": false
+          },
+          "failure": "intent track.order -> Default Fallback Intent; number [70334] -> []"
+        }
+      ],
+      "session_id": "eval-035717-54389185615b4d82"
+    },
+    {
+      "id": "ho-conv-05-offmenu-then-add",
+      "description": "off-menu item mid-order falls back, then a valid add, then finish",
+      "passed": true,
+      "turns_passed": 3,
+      "turns_total": 3,
+      "first_failure": null,
+      "turns": [
+        {
+          "turn": 1,
+          "text": "new order bru",
+          "expected_intent": "new.order",
+          "observed": {
+            "intent": "new.order",
+            "confidence": 0.7486996054649353,
+            "food_Item": [],
+            "number": [],
+            "all_required_params_present": true,
+            "reply": "Ok, starting a new order. You can say things like \"2 bunny chows and a milk tart\". Our menu: Bunny Chow, Boerewors Roll, Pap & Chakalaka, Bobotie, Vetkoek, Kota, Malva Pudding, Milk Tart and Sosaties.",
+            "latency_ms": 371.3205000094604,
+            "error": null,
+            "order_line": null
+          },
+          "score": {
+            "intent_ok": true,
+            "food_ok": null,
+            "number_ok": null,
+            "order_line_ok": null,
+            "prompted": false,
+            "prompt_ok": true,
+            "reply_ok": true,
+            "passed": true
+          },
+          "failure": null
+        },
+        {
+          "turn": 2,
+          "text": "gimme a pizza",
+          "expected_intent": "Default Fallback Intent",
+          "observed": {
+            "intent": "Default Fallback Intent",
+            "confidence": 1.0,
+            "food_Item": [],
+            "number": [],
+            "all_required_params_present": true,
+            "reply": "Sorry, I didn't understand. You can say 'New order' or 'Track order'. In an order, choose from our menu: Bunny Chow, Boerewors Roll, Pap & Chakalaka, Bobotie, Vetkoek, Kota, Malva Pudding, Milk Tart and Sosaties, for example \"a bobotie and 2 sosaties\".",
+            "latency_ms": 351.03419999359176,
+            "error": null,
+            "order_line": null
+          },
+          "score": {
+            "intent_ok": true,
+            "food_ok": true,
+            "number_ok": null,
+            "order_line_ok": null,
+            "prompted": false,
+            "prompt_ok": true,
+            "reply_ok": true,
+            "passed": true
+          },
+          "failure": null
+        },
+        {
+          "turn": 3,
+          "text": "ok then 2 bunnies",
+          "expected_intent": "order.add",
+          "observed": {
+            "intent": "order.add",
+            "confidence": 0.8885054588317871,
+            "food_Item": [
+              "Bunny Chow"
+            ],
+            "number": [
+              2
+            ],
+            "all_required_params_present": true,
+            "reply": "Added Bunny Chow to your order. Anything else?",
+            "latency_ms": 414.077699999325,
+            "error": null,
+            "order_line": null
+          },
+          "score": {
+            "intent_ok": true,
+            "food_ok": true,
+            "number_ok": true,
+            "order_line_ok": null,
+            "prompted": false,
+            "prompt_ok": true,
+            "reply_ok": true,
+            "passed": true
+          },
+          "failure": null
+        }
+      ],
+      "session_id": "eval-035717-2b017e4a925941ba"
+    }
+  ],
+  "gate": {
+    "exit_code": 0,
+    "messages": [
+      "ok intent_accuracy: baseline 0.870 -> current 0.889 (drop -0.019, max 0.020)",
+      "ok conversation_pass_rate: baseline 0.400 -> current 0.400 (drop +0.000, max 0.020)"
+    ]
+  }
+}

@@ -33,6 +33,8 @@ evals/reports/*/
 !evals/reports/prod-after-fixes-2026-11-17/
 !evals/reports/staging-dev-2026-11-17/
 !evals/reports/staging-heldout-2026-11-17/
+!evals/reports/v1.1.0-dev/
+!evals/reports/v1.1.0-heldout/
 
 # Editors / OS
 .vscode/

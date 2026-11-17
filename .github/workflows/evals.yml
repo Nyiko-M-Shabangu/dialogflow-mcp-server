@@ -12,7 +12,7 @@ name: NLU eval (staging agent)
 # A long-lived key in a secret is the simple setup. Workload Identity Federation
 # (google-github-actions/auth with `id-token: write`) avoids the key entirely and
 # is the better choice for anything beyond a demo; see the README roadmap.
-# A full run is about 243 detect_intent calls (~2.5 minutes).
+# A full run is about 273 detect_intent calls (~3 minutes).
 
 on:
   workflow_dispatch:
@@ -79,7 +79,7 @@ jobs:
           MAX_DROP: ${{ inputs.max_drop }}
         run: |
           uv run python evals/run_nlu.py --project "$GCP_EVAL_PROJECT" \
-            --baseline evals/reports/prod-after-fixes-2026-11-17/results.json \
+            --baseline evals/reports/v1.1.0-dev/results.json \
             --max-drop "$MAX_DROP" --min-accuracy 0.95 \
             --out "evals/reports/ci-${GITHUB_RUN_ID}"
 
