@@ -208,15 +208,17 @@ The Dialogflow ES agent is kept as code in [`dialogflow/agent/`](../dialogflow/a
 | Intent | Input context | Output context | Parameters | Behaviour |
 |---|---|---|---|---|
 | `new.order` | none | `ongoing-order` | none | Starts an order and lists the menu. |
-| `order.add` | `ongoing-order` | `ongoing-order` | `food_Item[]` (required), `number[]` | Confirms the added items. Prompts for a dish if none was found. |
+| `order.add` | `ongoing-order` | `ongoing-order` | `food_Item[]` (required), `number[]` (optional, default 1) | Confirms the added items. Prompts for a dish if none was found. |
 | `order_remove` | `ongoing-order` | `ongoing-order` | `food_Item[]` | Confirms the removed items. |
 | `order.complete` | `ongoing-order` | `ongoing-order` | none | Confirms. The client then calls `complete_order`. |
 | `track.order` | none | `ongoing-tracking` | `number` (integer, required) | Asks for the order ID if it is missing. |
 | `track.order - more` | `ongoing-tracking` | `ongoing-tracking` | `number` | Follow-up with an order ID. |
+| `menu.ask` | none | none | `food_Item[]` (optional) | Menu, price and availability questions. A static reply lists the menu; nothing is added to the order (since 1.1.0). |
 | `Default Welcome Intent` / `Default Fallback Intent` | none | none | none (Welcome has an optional `date-time`) | Greeting, and help text with the menu. |
 
 - **`food_Item`** is a map entity with fuzzy matching. Its values are exactly the nine menu dishes, with local synonyms.
-- **Quantities:** `number[]` can be shorter than `food_Item[]`. For example, "a kota" yields no number. Clients should default a missing quantity to 1 rather than pairing the two lists by position.
+- **Quantities:** `number[]` can be shorter than `food_Item[]`. For example, "a kota" yields no number, and "a kota and 2 bunny chows" yields `[2]`. Clients should default a missing quantity to 1 rather than pairing the two lists by position.
+- **`order_line` adapter (since 1.1.0):** if the agent returns a composite `order_line` parameter (a list of `{food_Item, number?}` pairs in utterance order), `detect_intent` derives aligned flat `food_Item[]` and `number[]` from it (a missing number becomes 1, `"1"` and `2.0` become integers), returns `order_line` unchanged, and logs the derived parameters. Without `order_line` the parameters pass through untouched. The current agent does not return `order_line`; this keeps existing consumers working if an agent that does is promoted.
 - Slot filling consumes the next turn. After "track my order" and the prompt for an ID, the reply "1003" is matched to `track.order`, not to `track.order - more`.
 
 ## 8. Concurrency model
@@ -268,9 +270,10 @@ Required environment for the remote server:
 
 [`evals/`](../evals/README.md) holds an NLU evaluation harness for the Dialogflow agent. It calls Dialogflow directly with `SessionsClient.detect_intent`. It does not go through the MCP server and writes nothing to the database.
 
-- A dev set of 182 labelled single-turn utterances and 16 conversations covers all eight intents. A held-out set of 54 utterances and 5 conversations was written separately, from a brief without the training phrases or the dev set, and filtered so that nothing in it resembles a training phrase or a dev utterance ([`evals/leakage.py`](../evals/leakage.py)).
+- A dev set of 212 labelled single-turn utterances (182 in v1.0.0) and 16 conversations covers all nine intents. A held-out set of 54 utterances and 5 conversations over the eight v1.0.0 intents was written separately, from a brief without the training phrases or the dev set, and filtered so that nothing in it resembles a training phrase or a dev utterance ([`evals/leakage.py`](../evals/leakage.py)). One overlap introduced by the 1.1.0 agent update ("thats all thanks") is documented there; the held-out file is never edited.
 - The report gives intent accuracy, macro F1, per-intent precision and recall, a confusion matrix, slot accuracy, accuracy by phrasing tag and latency, and the headline metrics again without dev cases that are verbatim training phrases.
-- Training-phrase fixes driven by the dev set raised its intent accuracy from **73.6% to 98.4%** (76.6% to 98.2% without the 11 verbatim cases). The same agent scores **87.0%** on the held-out set, which is the figure to expect on unseen phrasing. Part of the dev gain repaired a broken Welcome intent.
+- Training-phrase fixes driven by the dev set raised its intent accuracy from **73.6% to 98.4%** in v1.0.0 (76.6% to 98.2% without the 11 verbatim cases). The same agent scored **87.0%** on the held-out set, which is the figure to expect on unseen phrasing. Part of the dev gain repaired a broken Welcome intent.
+- The v1.1.0 agent (production) scores **99.5%** on the dev set (211/212; 181/182 on the original cases) and **88.9%** on the held-out set (48/54; 88.7% without the overlapping case), about the same as v1.0.0 on unseen phrasing. Mixed quantities ("a kota and 2 bunny chows") are still wrong in the NLU layer.
 - The pre-fix agent is kept in [`evals/agents/baseline-2026-11-17/`](../evals/agents/baseline-2026-11-17/) so the baseline can be reproduced on a staging project.
 - The harness can compare a run against a stored baseline and exit non-zero on a drop, so it can serve as a CI check for agent changes run against a staging copy of the agent.
 

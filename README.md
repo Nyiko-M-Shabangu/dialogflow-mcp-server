@@ -8,7 +8,18 @@
 
 A [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server that turns a Google **Dialogflow ES** food-ordering agent and its **PostgreSQL** backend into tools any AI client can call. Claude, Cursor or your own LLM app can understand a customer's message through Dialogflow, look up the menu, place an atomic order and track it, all through standard MCP tool calls. The remote server runs over Streamable HTTP with Bearer-token auth and a separate admin role, and keeps every database and Google credential on the server. The Dialogflow agent is versioned as code and measured with an NLU eval harness.
 
-**NLU results (intent accuracy):** dev set **73.6% → 98.4%**; held-out set **87.0%**. The dev set (182 utterances) was used to find and fix the failures, so 98.4% is not a generalisation estimate; the held-out set (54 utterances, written separately from the dev set and never tuned on) is. The baseline agent had a broken Welcome intent (its training phrases were the bot's own greetings), so part of the gain is repair rather than tuning. Still failing: the dev-set happy path "2 bunny chows and a milk tart" (and 2 more of 16 dev conversations), and 3 of 5 held-out conversations, mostly because "a"/"an" is not read as a quantity of 1. Details in [NLU evals](#nlu-evals).
+**NLU results (intent accuracy, v1.1.0 agent, production):** dev set **99.5%** (211/212); held-out set **88.9%** (48/54).
+
+| | v1.0.0 agent | v1.1.0 agent |
+|---|---:|---:|
+| Dev set, the original 182 cases | 98.4% (179/182) | 99.5% (181/182) |
+| Dev set, all 212 cases (30 added in 1.1.0) | | 99.5% (211/212) |
+| Held-out set, 54 cases | 87.0% (47/54) | 88.9% (48/54) |
+| Held-out set without `ho-complete-01` (see below), 53 cases | 86.8% (46/53) | 88.7% (47/53) |
+
+The dev set was used to find and fix the failures (73.6% before the v1.0.0 fixes), so its number is not a generalisation estimate; the held-out set (54 utterances, written separately from the dev set and never tuned on) is. The held-out gain is a single utterance from one run, so read it as "about the same", not as an improvement. One held-out utterance, "thats all thanks", became a training phrase in 1.1.0 by coincidence (it already passed before), so the table also gives the held-out numbers without it. **Still wrong in the NLU layer:** mixed quantities such as "a kota and 2 bunny chows" come back as `number: [2]` instead of `[1, 2]`. This fails the dev happy path ("2 bunny chows and a milk tart") and 2 of the 3 failing held-out conversations. Consumers should use `order_line` when the agent returns it, and otherwise not pair `food_Item` and `number` by position: treat a missing quantity as 1 or parse the quantities from the text. Details in [NLU evals](#nlu-evals).
+
+**Live demo:** [nyiko.co.za/dialogflow-mcp](https://www.nyiko.co.za/dialogflow-mcp)
 
 The demo domain is a South African food-ordering chatbot (Bunny Chow, Kota, Bobotie, Malva Pudding, ...), priced in rand. It grew out of my earlier [NLP-Food](https://github.com/Nyiko-Shabangu/NLP-Food) project, a Dialogflow food-ordering chatbot with a FastAPI webhook and MySQL. This project replaces the webhook with MCP tools and PostgreSQL, and adds the remote server, its security model, the eval harness and the deployment.
 
@@ -50,7 +61,7 @@ flowchart LR
     T -- "psycopg 3 pool" --> PG
 ```
 
-A client sends the customer's text to `detect_intent`. Dialogflow returns the intent (`new.order`, `order.add`, `order_remove`, `order.complete`, `track.order`) and the extracted dishes and quantities, and the server logs the turn to Postgres. The client then calls the database tools to act on it: `get_menu`, `complete_order`, `track_order`. Webhook fulfilment in Dialogflow is off on purpose; the MCP client does the work through tools. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the components, security model, data model and deployment topology.
+A client sends the customer's text to `detect_intent`. Dialogflow returns the intent (`new.order`, `order.add`, `order_remove`, `order.complete`, `track.order`, `menu.ask`) and the extracted dishes and quantities, and the server logs the turn to Postgres. The client then calls the database tools to act on it: `get_menu`, `complete_order`, `track_order`. Webhook fulfilment in Dialogflow is off on purpose; the MCP client does the work through tools. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the components, security model, data model and deployment topology.
 
 ## Quick start
 
@@ -168,7 +179,7 @@ See [`.env.example`](.env.example) for a commented template.
 
 | Tool | Role | What it does |
 |---|---|---|
-| `detect_intent` | user | Sends the customer's text to Dialogflow ES; returns reply, intent, confidence, parameters (`food_Item`, `number`) and contexts; logs the turn to Postgres |
+| `detect_intent` | user | Sends the customer's text to Dialogflow ES; returns reply, intent, confidence, parameters (`food_Item`, `number`, and `order_line` when the agent returns it) and contexts; logs the turn to Postgres |
 | `get_menu` | user | Available menu items with ZAR prices, optionally filtered by category |
 | `get_food_item_details` | user | One item by exact or unambiguous partial name |
 | `complete_order` | user | Creates an order and its line items in one transaction; 1-50 per item, at most 20 distinct items |
@@ -209,7 +220,7 @@ TEST_DATABASE_URL=postgresql://mcp:x@localhost:55434/dialogflow_mcp_test uv run 
 docker rm -f df-mcp-pytest
 ```
 
-`tests/conftest.py` refuses (an error, not a skip) a `TEST_DATABASE_URL` whose database name does not end in `_test`; whose host is missing or not `localhost`/`127.0.0.1`/`::1`; whose port is missing, 5433 (the compose default) or equal to `POSTGRES_PORT`; that names the same database as `DATABASE_URL`; or that uses `hostaddr`/`service`. With `REQUIRE_DB_TESTS=1` (set in CI) a missing `TEST_DATABASE_URL` fails the run. The full suite has 480 tests: 400 run without a database and 80 need one.
+`tests/conftest.py` refuses (an error, not a skip) a `TEST_DATABASE_URL` whose database name does not end in `_test`; whose host is missing or not `localhost`/`127.0.0.1`/`::1`; whose port is missing, 5433 (the compose default) or equal to `POSTGRES_PORT`; that names the same database as `DATABASE_URL`; or that uses `hostaddr`/`service`. With `REQUIRE_DB_TESTS=1` (set in CI) a missing `TEST_DATABASE_URL` fails the run. The full suite has 496 tests: 416 run without a database and 80 need one.
 
 ### NLU evals
 
@@ -221,19 +232,23 @@ docker rm -f df-mcp-pytest
 | [After](evals/reports/prod-after-fixes-2026-11-17/report.md) (production, fixed agent) | dev, 182 cases | **98.4%** | 0.98 | 95.6% | 93.2% | 13/16 |
 | [Re-run on staging](evals/reports/staging-dev-2026-11-17/report.md) (same agent) | dev, 182 cases | 98.4% | 0.98 | 95.6% | 93.2% | 13/16 |
 | [Held-out](evals/reports/staging-heldout-2026-11-17/report.md) (same agent, run once) | held-out, 54 cases | **87.0%** | 0.85 | 77.8% | 68.0% | 2/5 |
+| [v1.1.0 dev](evals/reports/v1.1.0-dev/report.md) (production, v1.1.0 agent) | dev, 212 cases | **99.5%** | 0.99 | 94.3% | 89.3% | 15/16 |
+| v1.1.0 dev, original cases only (same run) | dev, 182 cases | 99.5% | | 96.7% | 94.3% | |
+| [v1.1.0 held-out](evals/reports/v1.1.0-heldout/report.md) (same agent, run once) | held-out, 54 cases | **88.9%** | 0.88 | 79.6% | 68.0% | 2/5 |
 
 How to read it:
 
-- **The dev set guided the fixes.** It is 182 labelled single-turn utterances and 16 conversations covering slang, typos, multi-item orders, "a/an" quantities, off-menu dishes and order ids. 11 of its utterances are, after normalising case and punctuation, also training phrases of the fixed agent (some were added as fixes). They are labelled `verbatim_in_training`, and every report also gives the metrics without them: **76.6% → 98.2%** intent accuracy on the other 171 cases.
-- **The held-out set did not.** 54 single-turn utterances and 5 conversations in [`evals/golden/heldout.yaml`](evals/golden/heldout.yaml), written for this purpose by a writer who saw only the menu, the intent names and the label rules, not the training phrases or the dev set. The writer had no access to the repository, but its brief was written by someone who had seen the training phrases and the dev set, and it included a few style hints, some local dish nicknames and one example utterance, so the set is independent of the dev set but not perfectly blind. Every candidate with a near match to a training phrase or a dev-set utterance was dropped mechanically before the run (16 of 70; [`evals/leakage.py`](evals/leakage.py)), and the agent was not changed afterwards. 87.0% is the number to expect on new phrasing; it is from one run of 54 utterances, so treat it as a rough estimate.
+- **The dev set guided the fixes.** It is 212 labelled single-turn utterances (182 in v1.0.0, 30 added in 1.1.0) and 16 conversations covering slang, typos, multi-item orders, "a/an" quantities, off-menu dishes, menu questions and order ids. 13 of its utterances are, after normalising case and punctuation, also training phrases of the current agent (some were added as fixes). They are labelled `verbatim_in_training`, and every report also gives the metrics without them: **76.6% → 98.2%** intent accuracy on the other 171 cases in v1.0.0, and **99.5%** on the other 199 cases in v1.1.0.
+- **The 1.1.0 agent update** added the `menu.ask` intent, more completion phrases ("dats it", "no thats it") and typo and size synonyms ("vetcook", "a quarter bunny"). It was written against the dev set only; the private repository it was written in never contained the held-out set. The 30 new dev cases pass 24/30; the 6 failures are all mixed quantities. The conversation `conv-09` was relabelled because the quantity is optional with a default of 1 (the bot no longer asks "how many?"), so the conversation counts before and after 1.1.0 are not like-for-like.
+- **The held-out set did not.** 54 single-turn utterances and 5 conversations in [`evals/golden/heldout.yaml`](evals/golden/heldout.yaml), written for this purpose by a writer who saw only the menu, the intent names and the label rules, not the training phrases or the dev set. The writer had no access to the repository, but its brief was written by someone who had seen the training phrases and the dev set, and it included a few style hints, some local dish nicknames and one example utterance, so the set is independent of the dev set but not perfectly blind. Every candidate with a near match to a training phrase or a dev-set utterance was dropped mechanically before the run (16 of 70; [`evals/leakage.py`](evals/leakage.py)), and the agent was not changed afterwards. 87.0% (v1.0.0) and 88.9% (v1.1.0) are the numbers to expect on new phrasing; each is from one run of 54 utterances, so treat them as rough estimates. One documented overlap exists since 1.1.0: `ho-complete-01` ("thats all thanks") is now also an `order.complete` training phrase. The held-out file is never edited, so the overlap is recorded in `evals/leakage.py` (any other near match still fails CI), and the table above gives the numbers without that case.
 - **Part of the gain is repair.** In the baseline agent the Welcome intent's training phrases were the bot's own greeting texts, so "hi" fell through to the fallback (Welcome recall 0.00), and "a kota" was classified as a removal.
-- **Known gaps.** "a"/"an" is not extracted as a quantity of 1 in multi-item messages, which fails the dev happy path ("2 bunny chows and a milk tart") and 2 of the 3 failing held-out conversations; a bare "2" after a quantity prompt and "dats it" fail in the dev conversations; on the held-out set, some slang dish names ("sphatlho"), "n" for "and" in removals, and tracking phrasings without the word "track" are missed.
+- **Known gaps (v1.1.0).** "a"/"an" is not extracted as a quantity of 1 when it is mixed with digits or repeated ("a kota and 2 bunny chows" → `[2]`, "a milk tart and a vetkoek" → `[1]`): 9 of the 12 failing dev cases, the dev happy path ("2 bunny chows and a milk tart") and 2 of the 3 failing held-out conversations. `@sys.number` cannot read "a", and a flat `number` list cannot be aligned with `food_Item`. In development runs on a staging candidate agent (reports not included here), a composite `order_line` parameter fixed this; that agent is not promoted, and `detect_intent` is already ready for it. Also failing: "1 bobotie and 2 burgers" (the off-menu quantity is kept), "track order one thousand and five" (read as 1000; the backend should parse number words if it matters), "also order 42" in a tracking context, and on the held-out set some slang dish names ("sphatlho"), "n" for "and" in removals, and tracking phrasings without the word "track".
 
 The baseline agent is committed as [`evals/agents/baseline-2026-11-17/`](evals/agents/baseline-2026-11-17), so the 73.6% can be reproduced on a staging project (restore REPLACES that project's agent, and ES needs a minute or two to train):
 
 ```bash
 uv run python scripts/dialogflow_agent.py restore --project <staging-project> --confirm <staging-project> --dir evals/agents/baseline-2026-11-17
-uv run python evals/run_nlu.py --project <staging-project>                        # dev set, ~243 calls, ~2.5 min
+uv run python evals/run_nlu.py --project <staging-project>                        # dev set, ~273 calls, ~3 min
 # restore dialogflow/agent/ afterwards, then the held-out set:
 uv run python evals/run_nlu.py --project <staging-project> --cases evals/golden/heldout.yaml --conversations evals/golden/heldout.yaml
 ```
@@ -266,7 +281,21 @@ uv run python scripts/dialogflow_agent.py export --project your-gcp-project-id -
 uv run python scripts/dialogflow_agent.py restore --project your-gcp-project-id --confirm your-gcp-project-id --gcloud
 ```
 
-Export blanks the webhook URL and credentials and the legacy V1 key. Fulfilment is off, so every reply comes from static responses and the MCP client does the real work. Note that the `number` list can be shorter than the `food_Item` list ("a kota" has no number); treat a missing quantity as 1.
+Export blanks the webhook URL and credentials and the legacy V1 key. Fulfilment is off, so every reply comes from static responses and the MCP client does the real work.
+
+| Intent | Parameters | Use |
+|---|---|---|
+| `Default Welcome Intent` | | Greetings ("hi", "howzit", "sawubona") |
+| `new.order` | | Start an order; sets the `ongoing-order` context |
+| `order.add` | `food_Item` (list, required), `number` (list, optional, default 1) | Add dishes; needs the `ongoing-order` context |
+| `order_remove` | `food_Item` (list) | Remove dishes; needs `ongoing-order` |
+| `order.complete` | | Finish the order ("that's all", "dats it"); needs `ongoing-order` |
+| `track.order` | `number` (required integer, the order id) | Order status; prompts for the id when it is missing; sets `ongoing-tracking` |
+| `track.order - more` | `number` | Another order id in an `ongoing-tracking` context |
+| `menu.ask` | `food_Item` (list, optional) | Menu, price and availability questions, with or without an order in progress; a static menu reply, never adds to the order (new in 1.1.0) |
+| `Default Fallback Intent` | | Anything else, including off-menu dishes |
+
+The `number` list can be shorter than the `food_Item` list ("a kota" has no number, and in "a kota and 2 bunny chows" it is `[2]`), and a number may arrive as a float (`2.0`) or a string (`"1"`). Do not pair the lists by position: treat a missing quantity as 1 or parse the quantities from the text. If the agent returns a composite `order_line` parameter (a list of `{food_Item, number}` pairs), `detect_intent` derives aligned flat `food_Item` and `number` from it (a missing number becomes 1) and also returns `order_line` unchanged; prefer `order_line` when it is present. The current agent does not return `order_line` yet.
 
 ## Project structure
 
@@ -307,7 +336,7 @@ The main decisions are recorded as ADRs in [`docs/adr/`](docs/adr). "Accepted" m
 Not built yet, in rough priority order:
 
 - **Session-to-token binding** ([ADR 0007](docs/adr/0007-session-token-binding.md)): tie each MCP session to the credential that opened it, so a leaked session id cannot be used with the other token.
-- **Better quantity handling in the agent**: read "a"/"an" as 1 in multi-item orders, and handle a bare number after a quantity prompt. Measure on the held-out set, then write a fresh held-out set, because this one will have been looked at.
+- **Better quantity handling in the agent**: promote a composite `order_line` parameter so "a"/"an" is read as 1 in multi-item orders (the MCP side is ready since 1.1.0). Measure on the held-out set, then write a fresh held-out set, because this one will have been looked at.
 - **Per-user identity**: OAuth 2.1 (the MCP authorization spec) instead of shared tokens, with a per-user audit trail and token rotation without a redeploy.
 - **Rate limiting** in the app, or a gateway in front of it.
 - **Keyless CI auth for the eval workflow**: Workload Identity Federation instead of a service-account key in a GitHub secret.

@@ -4,7 +4,8 @@
 
 | Version | Supported |
 |---|---|
-| 1.0.x | yes |
+| 1.1.x | yes |
+| 1.0.x | no (upgrade to 1.1.x; it is backward compatible) |
 
 ## Reporting a vulnerability
 

@@ -7,6 +7,65 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-11-18
+
+### Added
+
+- **`menu.ask` intent** in the Dialogflow agent (`dialogflow/agent/`, synced with the
+  production agent): availability, price and menu questions ("do you have bobotie",
+  "how much is a bunny chow", "what's on the menu"), with an optional `food_Item` list.
+  It answers with a static menu reply and never adds anything to the order, so these
+  questions are no longer captured by `order.add`.
+- **`order_line` support in `detect_intent`** (backward compatible). When the agent
+  returns a composite `order_line` parameter (a list of `{food_Item, number}` pairs),
+  the tool derives aligned flat `food_Item` and `number` lists from it (a missing number
+  becomes 1, `"1"` and `2.0` become integers), returns `order_line` unchanged, and logs the
+  derived parameters. Without `order_line` the parameters are returned exactly as before.
+  The current agent does not return `order_line` yet; this prepares for an agent that
+  does without breaking existing consumers.
+- **30 dev-set cases** (`added_2026-11-17b`): mixed "a"/digit quantities, "a couple" /
+  "a dozen" / "a single", "a quarter bunny", "vetcook", completion slang and 10 `menu.ask`
+  cases. The dev set is now 212 single-turn cases.
+- **Eval harness support for `order_line`**: when present, `food_Item`/`number` are scored
+  from it with the server's rule, and the report adds a raw (dish, quantity) pair row.
+- **v1.1.0 eval reports** against the production agent: `evals/reports/v1.1.0-dev/` and
+  `evals/reports/v1.1.0-heldout/`. The earlier reports are kept.
+
+### Changed
+
+- **Agent training data**: 20 more `order.complete` phrases ("dats it", "no thats it",
+  "that will be everything", ...), 12 more `order.add` phrases (off-menu mixes, quarter
+  bunnies, measure words), and `food_Item` synonyms (vetcook, vetcooks, fetkoek; quarter,
+  half and full bunny). The `order.add` schema is unchanged: `number` is optional with a
+  default of 1 and may arrive as a float or the string `"1"`.
+- **NLU results.** Dev set intent accuracy 99.5% (211/212); on the original 182 cases
+  98.4% → 99.5%, case pass rate 95.6% → 96.7%, `number` accuracy 93.2% → 94.3%.
+  Held-out set 87.0% → 88.9% (47/54 → 48/54; 86.8% → 88.7% without `ho-complete-01`).
+  The held-out change is one utterance from one run, so it is about the same as before.
+  Still wrong in the NLU layer: mixed quantities such as "a kota and 2 bunny chows"
+  (`number` comes back as `[2]`). Consumers should use `order_line` when present and
+  otherwise not pair `food_Item` and `number` by position.
+- **conv-09 relabelled**: the quantity defaults to 1, so "I want bunny chow" adds one and
+  the bot no longer asks "how many?"; a stray bare "2" must not be acted on (fallback).
+  Dev conversations are 15/16, not like-for-like with v1.0.0's 13/16.
+- **Regression-gate baseline** for the manual eval workflow is now
+  `evals/reports/v1.1.0-dev/results.json` (the golden set changed).
+- `detect_intent` tool description lists `menu.ask` and the optional `order_line`, and
+  tells clients not to pair `food_Item` and `number` by position.
+- 13 dev cases are now labelled `verbatim_in_training` (was 11; "thats all" and
+  "thats it" became training phrases).
+
+### Fixed
+
+- Menu and price questions asked during an order ("is the kota available") were matched
+  as `order.add` and could add a dish to the order; they now match `menu.ask`.
+- "dats it" now completes the order, and "3 vetcooks" now adds Vetkoek.
+- Held-out leakage check: `ho-complete-01` ("thats all thanks") became an
+  `order.complete` training phrase in this release. The phrases were written in a
+  repository that never contained the held-out set, and the case already passed before.
+  The held-out file is not edited; the overlap is documented in
+  `evals/leakage.py` (`HELDOUT_KNOWN_OVERLAP`), and any other near match still fails CI.
+
 ## [1.0.0] - 2026-11-17
 
 First public release.
@@ -69,5 +128,6 @@ First public release.
   publishes a GitHub Release and then the image to GHCR. Third-party actions are pinned
   to commit SHAs.
 
-[Unreleased]: https://github.com/Nyiko-Shabangu/dialogflow-mcp-server/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/Nyiko-Shabangu/dialogflow-mcp-server/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/Nyiko-Shabangu/dialogflow-mcp-server/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/Nyiko-Shabangu/dialogflow-mcp-server/releases/tag/v1.0.0
