@@ -9,20 +9,34 @@ wheels/
 # Virtual environments
 .venv
 
-# Test caches
+# Test caches / coverage
 .pytest_cache/
 .ruff_cache/
 .mypy_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.tox/
+.nox/
+
+# Logs and scratch output
+*.log
+*.tmp
+*.bak
 
 # Local environment / secrets
 .env
 .env.*
 !.env.example
 
-# Google Cloud service-account keys (never commit)
+# Google Cloud service-account keys and other key material (never commit)
 *service-account*.json
 *credentials*.json
 *-key.json
+*.pem
+*.key
+*.p12
 
 # Railway IaC SDK (installed with `npm install --prefix .railway`)
 node_modules/
@@ -36,10 +50,19 @@ evals/reports/*/
 !evals/reports/v1.1.0-dev/
 !evals/reports/v1.1.0-heldout/
 
+# Local AI-assistant / tooling output
+.claude/
+CLAUDE.local.md
+graphify-out/
+docs/sdlc/
+
 # Editors / OS
 .vscode/
 .idea/
+*.swp
+*~
 .DS_Store
 Thumbs.db
+desktop.ini
 
 
