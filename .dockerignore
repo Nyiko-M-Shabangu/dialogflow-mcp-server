@@ -1,0 +1,28 @@
+# Keep the build context small and, above all, free of secrets.
+.git
+.github
+.venv
+.pytest_cache
+**/__pycache__
+**/*.py[oc]
+build/
+dist/
+*.egg-info
+
+# Secrets / local config — never bake these into an image.
+# (`**/` because unlike .gitignore, a bare pattern only matches the context root.)
+**/.env
+**/.env.*
+**/*.json
+
+# Not needed in the image.
+tests/
+db/
+docker-compose.yml
+.railway/
+dialogflow/
+scripts/
+evals/
+docs/
+Dockerfile
+.dockerignore

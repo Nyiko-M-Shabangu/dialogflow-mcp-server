@@ -1,0 +1,35 @@
+{
+  "id": "dc680bc8-e74f-4303-b665-ebe31740e930",
+  "name": "Default Fallback Intent",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "input.unknown",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "I didn't understand. You can say 'New order' or 'Track order'. In an order, choose from our menu: Bunny Chow, Boerewors Roll, Pap & Chakalaka, Bobotie, Vetkoek, Kota, Malva Pudding, Milk Tart and Sosaties, with a quantity for each, for example \"1 bobotie and 2 sosaties\"."
+          ],
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": true,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

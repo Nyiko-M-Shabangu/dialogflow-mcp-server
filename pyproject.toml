@@ -1,0 +1,97 @@
+[project]
+name = "dialogflow-mcp-server"
+version = "1.0.0"
+description = "MCP server that exposes a Dialogflow ES food-ordering agent and PostgreSQL as tools for any MCP client"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+keywords = ["mcp", "model-context-protocol", "dialogflow", "chatbot", "nlu", "postgresql"]
+authors = [
+    { name = "Nyiko Shabangu"}
+]
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=1.30,<2",
+    "anyio>=4,<5",
+    "google-cloud-dialogflow>=2.54,<3",
+    "psycopg[binary]>=3.2,<4",
+    "psycopg-pool>=3.3.3,<4",
+]
+
+[project.optional-dependencies]
+# The minimal Dialogflow CX server (dialogflow-mcp). Not in the Docker image,
+# which serves the ES tools only.
+cx = ["google-cloud-dialogflow-cx>=2.9,<3"]
+
+[project.scripts]
+dialogflow-mcp = "dialogflow_mcp:main"
+dialogflow-mcp-es = "dialogflow_mcp:main_es"
+dialogflow-mcp-remote = "dialogflow_mcp:main_remote"
+
+[project.urls]
+Repository = "https://github.com/Nyiko-Shabangu/dialogflow-mcp-server"
+Changelog = "https://github.com/Nyiko-Shabangu/dialogflow-mcp-server/blob/main/CHANGELOG.md"
+
+[build-system]
+requires = ["uv_build>=0.12.8,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+# The distribution is "dialogflow-mcp-server"; the import package is "dialogflow_mcp".
+module-name = "dialogflow_mcp"
+
+[dependency-groups]
+dev = [
+    # `mcp dev` (MCP Inspector) and the CX server's tests.
+    "mcp[cli]>=1.30,<2",
+    "google-cloud-dialogflow-cx>=2.9,<3",
+    "mypy>=2.4.1",
+    "pytest>=9.2.0",
+    "pyyaml>=6.0.3",
+    "ruff>=0.17.5",
+    "types-pyyaml>=6.0.12.20261113",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+extend-exclude = [".railway"]
+
+[tool.ruff.lint]
+# pyflakes, pycodestyle, isort, bugbear, pyupgrade, simplify, ruff-specific
+select = ["E", "W", "F", "I", "B", "UP", "SIM", "RUF"]
+ignore = [
+    "E501",    # long lines: the formatter wraps code; SQL and messages stay readable
+    "RUF001",  # ambiguous unicode in strings (box-drawing section rules)
+    "RUF002",
+    "RUF003",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["B011", "SIM117", "RUF012"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["dialogflow_mcp"]
+
+[tool.mypy]
+python_version = "3.10"
+files = ["src", "evals", "scripts"]
+check_untyped_defs = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+no_implicit_optional = true
+strict_equality = true
+
+[[tool.mypy.overrides]]
+# The package itself: every function is annotated.
+module = ["dialogflow_mcp.*"]
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+warn_return_any = true
+
+[[tool.mypy.overrides]]
+module = ["google.*", "proto.*"]
+ignore_missing_imports = true

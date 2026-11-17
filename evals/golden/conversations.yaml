@@ -1,0 +1,131 @@
+# Golden set: multi-turn conversations.
+#
+# Each conversation runs in its own fresh session; turns are sent in order.
+# A conversation passes when every turn passes. Per-turn fields are the same
+# as in nlu_single_turn.yaml (expected_intent, expected_food_Item,
+# expected_number, allow_slot_prompt) plus:
+#   expect_reply   true: the agent's reply text must be non-empty.
+#
+# Note on slot filling: when a required parameter is missing, Dialogflow asks
+# for it and the NEXT user turn is matched to the same intent (e.g. "track my
+# order" -> prompt -> "1005" is still track.order, not track.order - more).
+
+version: 1
+conversations:
+  - id: conv-01-happy-path
+    description: start, add two items, complete
+    turns:
+      - {text: "new order", expected_intent: new.order, expect_reply: true}
+      - {text: "2 bunny chows and a milk tart", expected_intent: order.add, expected_food_Item: [Bunny Chow, Milk Tart], expected_number: [2, 1], expect_reply: true}
+      - {text: "that's all", expected_intent: order.complete, expect_reply: true}
+
+  - id: conv-02-add-add-remove-complete
+    description: start, add, add, remove, complete
+    turns:
+      - {text: "new order", expected_intent: new.order}
+      - {text: "3 kotas", expected_intent: order.add, expected_food_Item: [Kota], expected_number: [3], expect_reply: true}
+      - {text: "and 2 vetkoek", expected_intent: order.add, expected_food_Item: [Vetkoek], expected_number: [2], expect_reply: true}
+      - {text: "remove the kota", expected_intent: order_remove, expected_food_Item: [Kota], expect_reply: true}
+      - {text: "done", expected_intent: order.complete, expect_reply: true}
+
+  - id: conv-03-track-with-id
+    description: track with the id in the first message
+    turns:
+      - {text: "track order 1005", expected_intent: track.order, expected_number: 1005, expect_reply: true}
+
+  - id: conv-04-track-without-id
+    description: track without an id, agent prompts, user gives the id
+    turns:
+      - {text: "track my order", expected_intent: track.order, allow_slot_prompt: true, expect_reply: true}
+      - {text: "1005", expected_intent: track.order, expected_number: 1005, expect_reply: true}
+
+  - id: conv-05-track-then-how-about
+    description: track one order, then ask about another
+    turns:
+      - {text: "track order 1005", expected_intent: track.order, expected_number: 1005}
+      - {text: "how about 2001", expected_intent: track.order - more, expected_number: 2001, expect_reply: true}
+
+  - id: conv-06-track-prompt-then-follow-up
+    description: prompted id, then a follow-up id
+    turns:
+      - {text: "where is my order", expected_intent: track.order, allow_slot_prompt: true, expect_reply: true}
+      - {text: "2001", expected_intent: track.order, expected_number: 2001}
+      - {text: "what about 1500", expected_intent: track.order - more, expected_number: 1500, expect_reply: true}
+
+  - id: conv-07-off-menu-mid-order
+    description: off-menu item mid-order must not be added; order continues
+    turns:
+      - {text: "new order", expected_intent: new.order}
+      - {text: "a pizza please", expected_intent: Default Fallback Intent, expected_food_Item: [], expect_reply: true}
+      - {text: "ok then 2 kotas", expected_intent: order.add, expected_food_Item: [Kota], expected_number: [2]}
+      - {text: "that's it", expected_intent: order.complete}
+
+  - id: conv-08-restart
+    description: restart the order half-way
+    turns:
+      - {text: "new order", expected_intent: new.order}
+      - {text: "2 sosaties", expected_intent: order.add, expected_food_Item: [Sosaties], expected_number: [2]}
+      - {text: "new order", expected_intent: new.order, expect_reply: true}
+      - {text: "1 bobotie", expected_intent: order.add, expected_food_Item: [Bobotie], expected_number: [1]}
+      - {text: "done", expected_intent: order.complete}
+
+  - id: conv-09-missing-quantity-slot-fill
+    description: no quantity given, agent prompts, user answers with a number
+    turns:
+      - {text: "new order", expected_intent: new.order}
+      - {text: "I want bunny chow", expected_intent: order.add, expected_food_Item: [Bunny Chow], allow_slot_prompt: true, expect_reply: true}
+      - {text: "2", expected_intent: order.add, expected_food_Item: [Bunny Chow], expected_number: [2]}
+      - {text: "that's all", expected_intent: order.complete}
+
+  - id: conv-10-greet-then-order
+    description: greeting, natural-language order start, add, complete
+    turns:
+      - {text: "hi", expected_intent: Default Welcome Intent, expect_reply: true}
+      - {text: "I'd like to order", expected_intent: new.order, expect_reply: true}
+      - {text: "2 malva puddings", expected_intent: order.add, expected_food_Item: [Malva Pudding], expected_number: [2]}
+      - {text: "nothing else", expected_intent: order.complete}
+
+  - id: conv-11-remove-before-order
+    description: remove with no order open falls back; then a real order
+    turns:
+      - {text: "remove the kota", expected_intent: Default Fallback Intent, expect_reply: true}
+      - {text: "new order", expected_intent: new.order}
+      - {text: "a kota", expected_intent: order.add, expected_food_Item: [Kota], expected_number: [1]}
+
+  - id: conv-12-done-before-order-then-track
+    description: '"done" with no order falls back; then tracking works'
+    turns:
+      - {text: "done", expected_intent: Default Fallback Intent, expect_reply: true}
+      - {text: "track order 42", expected_intent: track.order, expected_number: 42}
+
+  - id: conv-13-slang-order
+    description: slang items, remove by slang name, slang completion
+    turns:
+      - {text: "new order", expected_intent: new.order}
+      - {text: "sharp, 2 kotas and 3 magwinya", expected_intent: order.add, expected_food_Item: [Kota, Vetkoek], expected_number: [2, 3]}
+      - {text: "scrap the magwinya", expected_intent: order_remove, expected_food_Item: [Vetkoek]}
+      - {text: "dats it", expected_intent: order.complete}
+
+  - id: conv-14-chit-chat-mid-order
+    description: chit-chat mid-order falls back and the order survives
+    turns:
+      - {text: "new order", expected_intent: new.order}
+      - {text: "what's the weather like", expected_intent: Default Fallback Intent, expect_reply: true}
+      - {text: "2 boerewors rolls", expected_intent: order.add, expected_food_Item: [Boerewors Roll], expected_number: [2]}
+      - {text: "done", expected_intent: order.complete}
+
+  - id: conv-15-track-then-order
+    description: track an order, then place a new one
+    turns:
+      - {text: "track order 777", expected_intent: track.order, expected_number: 777}
+      - {text: "new order", expected_intent: new.order}
+      - {text: "a bunny chow", expected_intent: order.add, expected_food_Item: [Bunny Chow], expected_number: [1]}
+      - {text: "that's everything", expected_intent: order.complete}
+
+  - id: conv-16-numbers-as-words
+    description: quantities as words, remove, complete
+    turns:
+      - {text: "new order", expected_intent: new.order}
+      - {text: "two bobotie and one milk tart", expected_intent: order.add, expected_food_Item: [Bobotie, Milk Tart], expected_number: [2, 1]}
+      - {text: "remove the milk tart", expected_intent: order_remove, expected_food_Item: [Milk Tart]}
+      - {text: "complete my order", expected_intent: order.complete, expect_reply: true}

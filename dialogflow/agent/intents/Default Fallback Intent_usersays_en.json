@@ -1,0 +1,340 @@
+[
+  {
+    "id": "f0f75b38-c75e-4130-8554-52d65c0eea8a",
+    "data": [
+      {
+        "text": "what time is it",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a16d73e7-33f8-4ab9-92dc-b93f9e166fd8",
+    "data": [
+      {
+        "text": "play some music",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "34a6467b-4d9d-42db-8dfe-0db86a1b7bc3",
+    "data": [
+      {
+        "text": "who are you",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ea56830b-7881-455b-9c6e-0e5779606b24",
+    "data": [
+      {
+        "text": "what's your name",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "86aeca5d-aec2-45b6-88da-dcd4ab01bb1e",
+    "data": [
+      {
+        "text": "book a table for two",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "7084cd52-d65e-4d6c-b0fa-73697354e418",
+    "data": [
+      {
+        "text": "I need a plumber",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "430d1fe3-0801-4086-bfd9-e120c3e25b45",
+    "data": [
+      {
+        "text": "how old are you",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b008d1c9-73d3-4a41-9dac-a4ccea6e2b3a",
+    "data": [
+      {
+        "text": "what's the news today",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "058a4592-9392-4328-9acf-4ec983df0c23",
+    "data": [
+      {
+        "text": "translate this to french",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "7f8ff848-26d6-49f7-a81c-e97f0c40f950",
+    "data": [
+      {
+        "text": "can you help me with my homework",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "52e2966a-39b4-4e32-bf71-f02dd8de0e2f",
+    "data": [
+      {
+        "text": "can I get a sprite",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "0ce2d0ba-8ef8-43a1-8c62-fdeb16bcb3a6",
+    "data": [
+      {
+        "text": "I'd like some noodles",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "f6fed89d-06b9-47b0-9f84-53b12ffc31a3",
+    "data": [
+      {
+        "text": "a hot dog please",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "baf55875-7a19-4da5-aca9-c23e54a67446",
+    "data": [
+      {
+        "text": "I want some fries",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "0ef3da80-f0df-422d-8751-dda0174dbbd4",
+    "data": [
+      {
+        "text": "add 2 tacos",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2d7c790d-17ac-4a48-9cb0-e0327660bd8d",
+    "data": [
+      {
+        "text": "give me a milkshake",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "90dfd700-e4ba-4ee2-8a10-8f48625cfebc",
+    "data": [
+      {
+        "text": "one large cappuccino",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "06f4af69-0c2f-4c0d-95d2-30fa784f4996",
+    "data": [
+      {
+        "text": "I'll have a caesar salad",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "30a14e38-3ed0-4594-a8c2-3dd75af5244c",
+    "data": [
+      {
+        "text": "some spaghetti please",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ef862acf-3b54-4e64-9825-11a74c40c03a",
+    "data": [
+      {
+        "text": "fish and chips",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c4421520-39d0-41e0-b8f2-f96ec1275b35",
+    "data": [
+      {
+        "text": "add 4 chicken wings",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "1ca409cc-a255-4675-b412-52e01ca71cb0",
+    "data": [
+      {
+        "text": "a slice of cheesecake",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "0671cfc1-598d-4517-b0c9-e0ae1297bc04",
+    "data": [
+      {
+        "text": "2 doughnuts please",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "70870a4b-3ea0-46e7-be03-406e6e4a86be",
+    "data": [
+      {
+        "text": "I'd like a shawarma",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b7811981-0d98-4f7f-9aed-619acacecbca",
+    "data": [
+      {
+        "text": "can I have some dim sum",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "611ef407-130d-4a5c-bbae-b186a14334f0",
+    "data": [
+      {
+        "text": "a bottle of water",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

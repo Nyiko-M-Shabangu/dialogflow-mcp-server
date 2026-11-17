@@ -1,0 +1,120 @@
+# HELD-OUT golden set for the Dialogflow ES food-ordering agent.
+#
+# Written on 2026-11-17, after the training-phrase fixes, by a writer who was
+# given only the menu, the intent and context names, the label conventions and
+# the tag list: not the training phrases, not the dev set
+# (nlu_single_turn.yaml / conversations.yaml) and not any eval results.
+# The brief itself was written by someone who had seen the training phrases and
+# the dev set, and included style hints, some local dish nicknames and one
+# example utterance, so the set is independent but not perfectly blind.
+# The draft had 70 cases and 5 conversations (16 turns). Every utterance with a
+# near match (evals/leakage.py: normalised text equal, or difflib ratio >= 0.85)
+# against a training phrase or a dev-set utterance was then dropped
+# mechanically: 16 single-turn cases and 2 closing conversation turns ("done",
+# "thats it"). Nothing was relabelled, and the agent was not changed for it.
+# Never tune the agent on these utterances; tests/test_evals_metrics.py keeps
+# the no-near-match rule enforced.
+#
+# Field meanings are the same as in nlu_single_turn.yaml and conversations.yaml.
+version: 1
+cases:
+  # --- Default Welcome Intent ---
+  - {id: ho-welcome-02, text: "heita bru", expected_intent: Default Welcome Intent, tags: [slang]}
+  - {id: ho-welcome-03, text: "hie", expected_intent: Default Welcome Intent, tags: [typo]}
+  - {id: ho-welcome-05, text: "howzit bru hows it going", expected_intent: Default Welcome Intent, tags: [slang, chit-chat]}
+  - {id: ho-welcome-06, text: "sawubona, u good?", expected_intent: Default Welcome Intent, tags: [slang, chit-chat]}
+
+  # --- new.order ---
+  - {id: ho-new-04, text: "im starving, wanna buy food", expected_intent: new.order, tags: [paraphrase]}
+  - {id: ho-new-06, text: "sharp sharp, i wanna get some food", expected_intent: new.order, tags: [slang, paraphrase]}
+  - {id: ho-new-07, text: "ngicela ukuoda bru", expected_intent: new.order, tags: [slang]}
+  - {id: ho-new-08, text: "wanna ordr for pickup", expected_intent: new.order, tags: [typo]}
+
+  # --- order.add ---
+  - {id: ho-add-01, text: "lemme get 3 boerie rolls", expected_intent: order.add, expected_food_Item: [Boerewors Roll], expected_number: [3], input_contexts: [ongoing-order], tags: [slang, synonym]}
+  - {id: ho-add-02, text: "a bunny n 2 vetkoeks pls", expected_intent: order.add, expected_food_Item: [Bunny Chow, Vetkoek], expected_number: [1, 2], input_contexts: [ongoing-order], tags: [synonym, multi-item, a/an-quantity]}
+  - {id: ho-add-03, text: "two kotas and one malva puding", expected_intent: order.add, expected_food_Item: [Kota, Malva Pudding], expected_number: [2, 1], input_contexts: [ongoing-order], tags: [numbers-as-words, multi-item, typo]}
+  - {id: ho-add-05, text: "gimme 1 bobotie", expected_intent: order.add, expected_food_Item: [Bobotie], expected_number: [1], input_contexts: [ongoing-order], tags: [slang]}
+  - {id: ho-add-06, text: "chuck in three fat cakes", expected_intent: order.add, expected_food_Item: [Vetkoek], expected_number: [3], input_contexts: [ongoing-order], tags: [slang, synonym, numbers-as-words, paraphrase]}
+  - {id: ho-add-07, text: "eish bru i want 2 skhambane and a milk tart", expected_intent: order.add, expected_food_Item: [Kota, Milk Tart], expected_number: [2, 1], input_contexts: [ongoing-order], tags: [slang, synonym, multi-item, a/an-quantity]}
+  - {id: ho-add-08, text: "5 magwinya for the kids", expected_intent: order.add, expected_food_Item: [Vetkoek], expected_number: [5], input_contexts: [ongoing-order], tags: [synonym]}
+  - {id: ho-add-09, text: "can i hav pap en chakalaka x2", expected_intent: order.add, expected_food_Item: ["Pap & Chakalaka"], expected_number: [2], input_contexts: [ongoing-order], tags: [typo, synonym]}
+  - {id: ho-add-10, text: "1 bunny, 2 sosatie n a malva", expected_intent: order.add, expected_food_Item: [Bunny Chow, Sosaties, Malva Pudding], expected_number: [1, 2, 1], input_contexts: [ongoing-order], tags: [synonym, multi-item, a/an-quantity, typo]}
+  - {id: ho-add-11, text: "throw in a bobotie too", expected_intent: order.add, expected_food_Item: [Bobotie], expected_number: [1], input_contexts: [ongoing-order], tags: [a/an-quantity, paraphrase]}
+  - {id: ho-add-12, text: "ok so 6 boerewors rolls", expected_intent: order.add, expected_food_Item: [Boerewors Roll], expected_number: [6], input_contexts: [ongoing-order], tags: []}
+  - {id: ho-add-13, text: "ill take a sphatlho", expected_intent: order.add, expected_food_Item: [Kota], expected_number: [1], input_contexts: [ongoing-order], tags: [synonym, a/an-quantity]}
+  - {id: ho-add-15, text: "add bobotie", expected_intent: order.add, expected_food_Item: [Bobotie], allow_slot_prompt: true, input_contexts: [ongoing-order], tags: [missing-quantity]}
+  - {id: ho-add-16, text: "i want malva pudding", expected_intent: order.add, expected_food_Item: [Malva Pudding], allow_slot_prompt: true, input_contexts: [ongoing-order], tags: [missing-quantity]}
+  - {id: ho-add-17, text: "some vetkoek n sosaties pls", expected_intent: order.add, expected_food_Item: [Vetkoek, Sosaties], allow_slot_prompt: true, input_contexts: [ongoing-order], tags: [missing-quantity, multi-item]}
+  - {id: ho-add-19, text: "ten sosaties for the braai", expected_intent: order.add, expected_food_Item: [Sosaties], expected_number: [10], input_contexts: [ongoing-order], tags: [numbers-as-words]}
+  - {id: ho-add-20, text: "yoh lemme get a boerie roll n 2 pap n chakalaka", expected_intent: order.add, expected_food_Item: [Boerewors Roll, "Pap & Chakalaka"], expected_number: [1, 2], input_contexts: [ongoing-order], tags: [slang, synonym, multi-item, a/an-quantity]}
+  - {id: ho-add-21, text: "plus 2 bobotis", expected_intent: order.add, expected_food_Item: [Bobotie], expected_number: [2], input_contexts: [ongoing-order], tags: [typo]}
+  - {id: ho-add-23, text: "milktart x3 n bunny x1", expected_intent: order.add, expected_food_Item: [Milk Tart, Bunny Chow], expected_number: [3, 1], input_contexts: [ongoing-order], tags: [typo, synonym, multi-item]}
+  - {id: ho-add-24, text: "sharp, put down 2 kotas, 1 bobotie and three sosaties", expected_intent: order.add, expected_food_Item: [Kota, Bobotie, Sosaties], expected_number: [2, 1, 3], input_contexts: [ongoing-order], tags: [slang, multi-item, numbers-as-words]}
+
+  # --- order_remove ---
+  - {id: ho-remove-03, text: "nah scrap the milk tart", expected_intent: order_remove, expected_food_Item: [Milk Tart], input_contexts: [ongoing-order], tags: [slang, paraphrase]}
+  - {id: ho-remove-04, text: "eish i dont want the sosaties anymore", expected_intent: order_remove, expected_food_Item: [Sosaties], input_contexts: [ongoing-order], tags: [slang, paraphrase]}
+  - {id: ho-remove-05, text: "drop the boerie roll n the vetkoek", expected_intent: order_remove, expected_food_Item: [Boerewors Roll, Vetkoek], input_contexts: [ongoing-order], tags: [synonym, multi-item]}
+  - {id: ho-remove-07, text: "skip the fat cakes bru", expected_intent: order_remove, expected_food_Item: [Vetkoek], input_contexts: [ongoing-order], tags: [synonym, slang]}
+  - {id: ho-remove-08, text: "remov bunny pls", expected_intent: order_remove, expected_food_Item: [Bunny Chow], input_contexts: [ongoing-order], tags: [typo, synonym]}
+
+  # --- order.complete ---
+  - {id: ho-complete-01, text: "thats all thanks", expected_intent: order.complete, input_contexts: [ongoing-order], tags: []}
+  - {id: ho-complete-02, text: "sharp im done", expected_intent: order.complete, input_contexts: [ongoing-order], tags: [slang]}
+  - {id: ho-complete-03, text: "nah thats it bru", expected_intent: order.complete, input_contexts: [ongoing-order], tags: [slang]}
+  - {id: ho-complete-04, text: "done ordering, checkout", expected_intent: order.complete, input_contexts: [ongoing-order], tags: [paraphrase]}
+  - {id: ho-complete-05, text: "finish my order pls", expected_intent: order.complete, input_contexts: [ongoing-order], tags: []}
+  - {id: ho-complete-07, text: "nothing else, place it", expected_intent: order.complete, input_contexts: [ongoing-order], tags: [paraphrase]}
+
+  # --- track.order ---
+  - {id: ho-track-02, text: "status of 73?", expected_intent: track.order, expected_number: 73, tags: [track-id]}
+  - {id: ho-track-03, text: "eish its been an hour, order 30915 still not here", expected_intent: track.order, expected_number: 30915, tags: [track-id, slang, paraphrase]}
+  - {id: ho-track-04, text: "hows my food coming? no 512", expected_intent: track.order, expected_number: 512, tags: [track-id, paraphrase]}
+  - {id: ho-track-05, text: "any news on ordr 9087", expected_intent: track.order, expected_number: 9087, tags: [track-id, typo]}
+  - {id: ho-track-07, text: "track my ordr pls", expected_intent: track.order, allow_slot_prompt: true, tags: [typo]}
+  - {id: ho-track-08, text: "yoh is my order on the way?", expected_intent: track.order, allow_slot_prompt: true, tags: [slang]}
+
+  # --- track.order - more ---
+  - {id: ho-trackmore-01, text: "and 2290?", expected_intent: "track.order - more", expected_number: 2290, input_contexts: [ongoing-tracking], tags: [track-id]}
+  - {id: ho-trackmore-02, text: "wat about 16", expected_intent: "track.order - more", expected_number: 16, input_contexts: [ongoing-tracking], tags: [track-id, typo]}
+  - {id: ho-trackmore-03, text: "ok check 40017 too", expected_intent: "track.order - more", expected_number: 40017, input_contexts: [ongoing-tracking], tags: [track-id, paraphrase]}
+  - {id: ho-trackmore-04, text: "n my other one, number one hundred and twelve?", expected_intent: "track.order - more", expected_number: 112, input_contexts: [ongoing-tracking], tags: [track-id, numbers-as-words]}
+
+  # --- Default Fallback Intent ---
+  - {id: ho-fallback-01, text: "lemme get 2 burgers n a coke", expected_intent: Default Fallback Intent, expected_food_Item: [], input_contexts: [ongoing-order], tags: [off-menu, multi-item, slang]}
+  - {id: ho-fallback-02, text: "add a large pizza", expected_intent: Default Fallback Intent, expected_food_Item: [], input_contexts: [ongoing-order], tags: [off-menu]}
+  - {id: ho-fallback-03, text: "who won the derby on saturday bru", expected_intent: Default Fallback Intent, tags: [chit-chat, slang]}
+  - {id: ho-fallback-04, text: "take the bobotie off", expected_intent: Default Fallback Intent, tags: [no-context]}
+  - {id: ho-fallback-05, text: "thats all im done", expected_intent: Default Fallback Intent, tags: [no-context]}
+
+conversations:
+  - id: ho-conv-01-full-order
+    description: start an order, add items incl. a multi-item a/an message, add more, finish
+    turns:
+      - {text: "yo i wanna order", expected_intent: new.order, expect_reply: true}
+      - {text: "2 kotas n a malva pudding", expected_intent: order.add, expected_food_Item: [Kota, Malva Pudding], expected_number: [2, 1], expect_reply: true}
+      - {text: "plus a vetkoek", expected_intent: order.add, expected_food_Item: [Vetkoek], expected_number: [1], expect_reply: true}
+      - {text: "sharp thats all", expected_intent: order.complete, expect_reply: true}
+  - id: ho-conv-02-add-remove
+    description: start, add two items, remove one, finish
+    turns:
+      - {text: "start an order pls", expected_intent: new.order, expect_reply: true}
+      - {text: "3 sosaties and a bobotie", expected_intent: order.add, expected_food_Item: [Sosaties, Bobotie], expected_number: [3, 1], expect_reply: true}
+      - {text: "actually take out the bobotie", expected_intent: order_remove, expected_food_Item: [Bobotie], expect_reply: true}
+  - id: ho-conv-03-track-more
+    description: track an order by id, then ask about another id
+    turns:
+      - {text: "wheres order 6150", expected_intent: track.order, expected_number: 6150, expect_reply: true}
+      - {text: "and 812?", expected_intent: "track.order - more", expected_number: 812, expect_reply: true}
+  - id: ho-conv-04-track-slot-fill
+    description: track without an id, bot asks, user replies with just the id (same intent via slot filling)
+    turns:
+      - {text: "is my order ready yet", expected_intent: track.order, allow_slot_prompt: true, expect_reply: true}
+      - {text: "70334", expected_intent: track.order, expected_number: 70334, expect_reply: true}
+  - id: ho-conv-05-offmenu-then-add
+    description: off-menu item mid-order falls back, then a valid add, then finish
+    turns:
+      - {text: "new order bru", expected_intent: new.order, expect_reply: true}
+      - {text: "gimme a pizza", expected_intent: Default Fallback Intent, expected_food_Item: [], expect_reply: true}
+      - {text: "ok then 2 bunnies", expected_intent: order.add, expected_food_Item: [Bunny Chow], expected_number: [2], expect_reply: true}

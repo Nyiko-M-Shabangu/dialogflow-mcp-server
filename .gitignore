@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Test caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Local environment / secrets
+.env
+.env.*
+!.env.example
+
+# Google Cloud service-account keys (never commit)
+*service-account*.json
+*credentials*.json
+*-key.json
+
+# Railway IaC SDK (installed with `npm install --prefix .railway`)
+node_modules/
+
+# NLU eval runs (commit a run deliberately, e.g. a new baseline)
+evals/reports/*/
+!evals/reports/baseline-2026-11-17/
+!evals/reports/prod-after-fixes-2026-11-17/
+!evals/reports/staging-dev-2026-11-17/
+!evals/reports/staging-heldout-2026-11-17/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+

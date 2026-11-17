@@ -1,0 +1,417 @@
+[
+  {
+    "id": "cfba70a0-66e6-4264-ad18-671b9289f4b3",
+    "data": [
+      {
+        "text": "can you remove ",
+        "userDefined": false
+      },
+      {
+        "text": "malva pudding",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b1753319-5757-4800-add1-915f9c26db1b",
+    "data": [
+      {
+        "text": "remove ",
+        "userDefined": false
+      },
+      {
+        "text": "sosaties",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": " from my order",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c4820a06-a9bb-478f-8c72-66f93b70c8a8",
+    "data": [
+      {
+        "text": "I don't want ",
+        "userDefined": false
+      },
+      {
+        "text": "bobotie",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "266102ac-0b0c-4c19-bc55-7a6f68925fa9",
+    "data": [
+      {
+        "text": "hey, plz get rid of ",
+        "userDefined": false
+      },
+      {
+        "text": "vetkoek",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": " and ",
+        "userDefined": false
+      },
+      {
+        "text": "kota",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b88327a7-1630-43ec-bf80-41aac67292a6",
+    "data": [
+      {
+        "text": "delete ",
+        "userDefined": false
+      },
+      {
+        "text": "boerie roll",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": " from my order",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "0034ecd1-16d5-4e4a-94d2-4e5f9d84d738",
+    "data": [
+      {
+        "text": "Please take the ",
+        "userDefined": false
+      },
+      {
+        "text": "bunny chow",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": " off my order",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "5f70ca30-77a2-423c-ba07-39080ca3d652",
+    "data": [
+      {
+        "text": "I would like to remove the ",
+        "userDefined": false
+      },
+      {
+        "text": "pap and chakalaka",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": " from my order",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "fc814ba8-053d-4a58-9bc9-368a86d721a5",
+    "data": [
+      {
+        "text": "Kindly exclude the ",
+        "userDefined": false
+      },
+      {
+        "text": "milk tart",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": " from my order",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "e784dd05-e600-40db-9ae4-5c78ea72020b",
+    "data": [
+      {
+        "text": "I no longer want the ",
+        "userDefined": false
+      },
+      {
+        "text": "sosaties",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": " in my order, please remove it",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "68cb5ae4-c161-4019-ae95-d5227ddad4a0",
+    "data": [
+      {
+        "text": "I'd like to exclude ",
+        "userDefined": false
+      },
+      {
+        "text": "bobotie",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": " and ",
+        "userDefined": false
+      },
+      {
+        "text": "malva pudding",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": ", please",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "12946fe1-1b15-45cb-bc31-bf074bce5e07",
+    "data": [
+      {
+        "text": "Kindly take ",
+        "userDefined": false
+      },
+      {
+        "text": "bunny chow",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": " and ",
+        "userDefined": false
+      },
+      {
+        "text": "vetkoek",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": " off the order, please.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "bf1e0002-48b2-416f-a2a7-ce6d233f5e62",
+    "data": [
+      {
+        "text": "No ",
+        "userDefined": false
+      },
+      {
+        "text": "kota",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": " and ",
+        "userDefined": false
+      },
+      {
+        "text": "boerewors roll",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": " in my order. please remove.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "f649ba28-e39e-471c-a04e-7ef13d356486",
+    "data": [
+      {
+        "text": "remove the ",
+        "userDefined": false
+      },
+      {
+        "text": "milk tart",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "bd0a4eb9-45a8-4df9-add7-285164093e72",
+    "data": [
+      {
+        "text": "take the ",
+        "userDefined": false
+      },
+      {
+        "text": "kota",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": " off my order",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "4befcab3-10a9-437b-a348-0938beb964df",
+    "data": [
+      {
+        "text": "I don't want the ",
+        "userDefined": false
+      },
+      {
+        "text": "bunny chow",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": " anymore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "df7af8dc-a6eb-4053-ada7-7ae264381f67",
+    "data": [
+      {
+        "text": "cancel the ",
+        "userDefined": false
+      },
+      {
+        "text": "boerewors roll",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "27a6beec-c7ba-4308-84ba-ccf1bf74b105",
+    "data": [
+      {
+        "text": "no ",
+        "userDefined": false
+      },
+      {
+        "text": "vetkoek",
+        "meta": "@food_Item",
+        "alias": "food_Item",
+        "userDefined": true
+      },
+      {
+        "text": " please",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

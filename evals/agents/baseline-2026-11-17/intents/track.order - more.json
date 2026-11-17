@@ -1,0 +1,57 @@
+{
+  "id": "acc09271-91a2-4ed5-8896-78264a737083",
+  "name": "track.order - more",
+  "auto": true,
+  "contexts": [
+    "ongoing-tracking"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "trackorder.trackorder-more",
+      "affectedContexts": [
+        {
+          "name": "ongoing-tracking",
+          "lifespan": 5
+        }
+      ],
+      "parameters": [
+        {
+          "id": "e164eff2-04f0-40a8-b7d4-d82febb1198d",
+          "name": "number",
+          "required": false,
+          "dataType": "@sys.number",
+          "value": "$number",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "Checking the status of order #$number."
+          ],
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

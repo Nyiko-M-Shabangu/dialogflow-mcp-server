@@ -1,0 +1,26 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: dialogflow-mcp-db
+    restart: unless-stopped
+    ports:
+      # Bind to loopback; defaults to port 5433 to avoid collision with local Postgres on 5432.
+      - "127.0.0.1:${POSTGRES_PORT:-5433}:5432"
+    environment:
+      POSTGRES_DB: dialogflow_mcp
+      POSTGRES_USER: mcp
+      # Override via .env / shell for anything beyond local dev.
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-mcp_local_dev}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+      # Demo orders 1001-1004 with fictional customers (local development only).
+      - ./db/seed_demo.sql:/docker-entrypoint-initdb.d/02-seed_demo.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mcp -d dialogflow_mcp"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+volumes:
+  pgdata:

@@ -1,0 +1,51 @@
+[
+  {
+    "id": "ab4e39bb-457f-4bf0-a07a-f866fff90aae",
+    "data": [
+      {
+        "text": "Greetings! How can I assist? You can say \"New Order\" or \"Track Order\"",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ded158c5-962b-4ad1-974d-f35d2ac467c1",
+    "data": [
+      {
+        "text": "Good day! What can I do for you ",
+        "userDefined": false
+      },
+      {
+        "text": "today",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": "? You can say \"New Order\" or \"Track Order\"",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "57040603-4030-46d7-9698-f4e35db6f904",
+    "data": [
+      {
+        "text": "Hello, How can I help you? You can say \"New Order\" or \"Track Order\"",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

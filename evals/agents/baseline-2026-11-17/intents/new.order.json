@@ -1,0 +1,41 @@
+{
+  "id": "4593f545-8fd0-4e0f-848b-99af83e1b1f3",
+  "name": "new.order",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "ongoing-order",
+          "lifespan": 5
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "Ok, starting a new order. You can say things like \"2 bunny chows and 1 milk tart\". Please give a quantity for every item. Our menu: Bunny Chow, Boerewors Roll, Pap & Chakalaka, Bobotie, Vetkoek, Kota, Malva Pudding, Milk Tart and Sosaties.",
+            "Starting a new order. Tell me the dishes and quantities, for example \"one kota and two vetkoek\". Our menu: Bunny Chow, Boerewors Roll, Pap & Chakalaka, Bobotie, Vetkoek, Kota, Malva Pudding, Milk Tart and Sosaties."
+          ],
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

@@ -1,0 +1,327 @@
+[
+  {
+    "id": "81c1e2ae-b234-4f66-a030-9ad73c8712c6",
+    "data": [
+      {
+        "text": "Place new order",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "d46d5d4c-e3e2-4388-9ea9-26c28c1295a2",
+    "data": [
+      {
+        "text": "new order",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "cf6a1fce-4f0b-43dc-9faf-98f188e1bd20",
+    "data": [
+      {
+        "text": "I would like to order",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "26b9158d-eda8-4e1a-8437-95f624bfdf0a",
+    "data": [
+      {
+        "text": "Can i place an oder",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "fef1518f-874b-4d95-901a-f161a7fbc79d",
+    "data": [
+      {
+        "text": "I want to order",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "93d796af-b9fc-42ae-a71d-c03e4f7a16c1",
+    "data": [
+      {
+        "text": "I'd like to place an order please",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "8f88508f-9e03-4eb7-9d6e-329580cbe081",
+    "data": [
+      {
+        "text": "can I make an order",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a8942242-8a34-400e-bbab-bef610c779b3",
+    "data": [
+      {
+        "text": "I want to start an order",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "d7185ef3-519c-4c4c-8832-f847f6fa4258",
+    "data": [
+      {
+        "text": "begin a new order",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c647b7ef-dfb6-4cfe-a1ed-de438a7ca719",
+    "data": [
+      {
+        "text": "let me place an order",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c9bf4ff6-d9b6-4c8e-84fd-143c1e6c3285",
+    "data": [
+      {
+        "text": "I'm ready to order",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "6b50acba-ce7f-4b48-b208-867146cee10c",
+    "data": [
+      {
+        "text": "can I order please",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c0cb9293-efb5-4dc0-9481-8b9e5a0015f8",
+    "data": [
+      {
+        "text": "I want to order something to eat",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "dd33a7fb-c230-42aa-b7e8-0a4dc103f191",
+    "data": [
+      {
+        "text": "I'd like to get some food",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "f39c85de-4fe8-42a7-b156-e91c06b83ffd",
+    "data": [
+      {
+        "text": "can I get some food please",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b0b82d99-be54-436f-9ab5-29d55f4bd3c3",
+    "data": [
+      {
+        "text": "take my order",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "9a56e1ca-e94e-4a7c-8e00-fed1e5ed2518",
+    "data": [
+      {
+        "text": "I want to buy something to eat",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "23c52d2b-71ab-4d41-8762-0bf0802337ed",
+    "data": [
+      {
+        "text": "let's start an order",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "0198b375-8c8e-4644-897e-29cef93a0550",
+    "data": [
+      {
+        "text": "I'm hungry",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ddc4451a-0dcf-40f1-8eb2-02b12935a9ae",
+    "data": [
+      {
+        "text": "open a new order",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "efcfccc9-e4ac-4141-a535-3bd0a4fcaa09",
+    "data": [
+      {
+        "text": "create an order",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "aa8c1509-d440-4b44-9ec1-136f76bb0fd8",
+    "data": [
+      {
+        "text": "I want to order dinner",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "8a3c2fa9-1fb7-484e-b76d-9e2ed45c2443",
+    "data": [
+      {
+        "text": "can we start an order",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "7437038a-87ad-4a68-9ecf-6b86b448d728",
+    "data": [
+      {
+        "text": "I need to order food",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "db27eb15-c226-4f47-8e9a-790891fcb70a",
+    "data": [
+      {
+        "text": "new order pls",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

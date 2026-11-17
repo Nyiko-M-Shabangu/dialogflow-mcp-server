@@ -1,0 +1,150 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint and type check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6.8.0
+        with:
+          version: "0.12.8"
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --locked
+
+      - name: ruff check
+        run: uv run --locked ruff check
+
+      - name: ruff format --check
+        run: uv run --locked ruff format --check
+
+      - name: mypy
+        run: uv run --locked mypy
+
+      - name: Golden-set overlap labels and held-out rule
+        run: uv run --locked python evals/leakage.py --strict
+
+  test:
+    name: pytest (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        # Oldest supported (requires-python) and the version in .python-version.
+        python-version: ["3.10", "3.14"]
+
+    services:
+      # Throwaway database: tests/test_db.py drops and recreates the public
+      # schema before every test.
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_DB: dialogflow_mcp_test
+          POSTGRES_USER: mcp
+          POSTGRES_PASSWORD: ci_only_password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U mcp -d dialogflow_mcp_test"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+
+    env:
+      # Enables the DB integration tests. The database name must end in _test:
+      # tests/conftest.py refuses anything that could be a real database.
+      TEST_DATABASE_URL: postgresql://mcp:ci_only_password@localhost:5432/dialogflow_mcp_test
+      # A missing TEST_DATABASE_URL fails the run instead of skipping the DB tests.
+      REQUIRE_DB_TESTS: "1"
+
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6.8.0
+        with:
+          version: "0.12.8"
+          python-version: ${{ matrix.python-version }}
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --locked
+
+      - name: Run tests
+        # -rs lists skip reasons, so a silently skipped suite is visible.
+        run: uv run --locked pytest -q -rs -p no:cacheprovider
+
+      - name: Build package
+        run: uv build --out-dir dist
+
+  docker:
+    # The release workflow and Railway build this same Dockerfile; catch a broken image early.
+    name: Docker image smoke test
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      # Dummy values for the smoke test only. Nothing listens on port 9, so
+      # /ready reports the database as down.
+      SMOKE_TOKEN: ci-smoke-token-0123456789
+      SMOKE_DATABASE_URL: postgresql://smoke:smoke@127.0.0.1:9/smoke_unused
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+
+      - name: Validate docker-compose.yml
+        run: docker compose config -q
+
+      - name: Build image
+        run: docker build -t dialogflow-mcp-server:ci .
+
+      - name: Smoke test
+        run: |
+          docker run -d --name mcp-smoke -p 8000:8000 \
+            -e MCP_AUTH_TOKEN="$SMOKE_TOKEN" \
+            -e DATABASE_URL="$SMOKE_DATABASE_URL" \
+            dialogflow-mcp-server:ci
+          for _ in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8000/health; then break; fi
+            sleep 1
+          done
+          echo
+          curl -fsS http://127.0.0.1:8000/health
+          code=$(curl -s -o /dev/null -w '%{http_code}' -X POST http://127.0.0.1:8000/mcp)
+          echo "POST /mcp without token -> $code"
+          test "$code" = "401"
+          code=$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8000/ready)
+          echo "GET /ready without a database -> $code"
+          test "$code" = "503"
+          # One authenticated MCP initialize: the request passes the auth
+          # middleware and reaches the MCP session manager inside the image.
+          body=$(curl -sS -w '\n%{http_code}' -X POST http://127.0.0.1:8000/mcp \
+            -H "Authorization: Bearer $SMOKE_TOKEN" \
+            -H "Content-Type: application/json" \
+            -H "Accept: application/json, text/event-stream" \
+            -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"ci-smoke","version":"0"}}}')
+          code=$(printf '%s' "$body" | tail -n 1)
+          echo "POST /mcp initialize with token -> $code"
+          test "$code" = "200"
+          printf '%s' "$body" | grep -q '"serverInfo"'
+
+      - name: Container logs
+        if: always()
+        run: docker logs mcp-smoke || true

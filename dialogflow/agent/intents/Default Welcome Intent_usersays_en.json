@@ -1,0 +1,314 @@
+[
+  {
+    "id": "9a9ce92b-d88a-4dd0-b85e-4ae9429de519",
+    "data": [
+      {
+        "text": "hi",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ba006abc-2931-4f0e-a3f1-ce2378b7c7ff",
+    "data": [
+      {
+        "text": "hello",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "12ae982f-9d17-4e17-bd17-1d251d1fb6f6",
+    "data": [
+      {
+        "text": "hey",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "52e60df6-2323-4ff0-8b66-2c1fe5adf8ba",
+    "data": [
+      {
+        "text": "hi there",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "9e71d031-5189-408e-9700-116815c1e5a2",
+    "data": [
+      {
+        "text": "hello there",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "e7ac0588-0955-4f7d-bf83-891fd1865111",
+    "data": [
+      {
+        "text": "howzit",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "240dafad-c2a7-4037-b141-dc3bec483399",
+    "data": [
+      {
+        "text": "howzit bru",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "afc09170-7842-46ce-abf0-37cf0e727ed8",
+    "data": [
+      {
+        "text": "sho",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "8d454967-1fd0-47e8-93ef-accce25a2443",
+    "data": [
+      {
+        "text": "sho hi",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "17eed0fd-384d-41cd-86f3-ac886c836e2b",
+    "data": [
+      {
+        "text": "sawubona",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a684b881-a3f5-4e86-be23-3aacab6a1c84",
+    "data": [
+      {
+        "text": "heita",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "e8a49104-a649-46a0-9803-43c2c579d53f",
+    "data": [
+      {
+        "text": "hiya",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "4769f35d-bf5f-4557-a56c-429fb36c79fd",
+    "data": [
+      {
+        "text": "yo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ca0bc28a-9e19-4c0e-ac4f-97a49e288885",
+    "data": [
+      {
+        "text": "good day",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ab26993b-3c08-4fb1-b46e-29af95991af4",
+    "data": [
+      {
+        "text": "good afternoon",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c78a8ea8-6ac5-4dee-87b8-90c359117c38",
+    "data": [
+      {
+        "text": "morning",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "49a6ef84-d9e5-44e5-84ed-bf9cf66639e0",
+    "data": [
+      {
+        "text": "evening",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2cc2e875-0981-449c-be60-13ee9eea9db1",
+    "data": [
+      {
+        "text": "molo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "8a780fb0-246b-4d90-8afe-e7476099fc9a",
+    "data": [
+      {
+        "text": "dumela",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "eef18e2e-4562-4f12-81fb-759ff54719b0",
+    "data": [
+      {
+        "text": "hallo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "fc4cb76c-2b6f-4563-bbe4-15b466e69cd1",
+    "data": [
+      {
+        "text": "hola",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "fabaccd3-8476-4a3b-8a36-fefe5b475050",
+    "data": [
+      {
+        "text": "greetings",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "7c5c126e-ff8e-4cb0-a4f5-78b9ead1fd80",
+    "data": [
+      {
+        "text": "hey bot",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ecf40e00-7004-49a9-9d94-aad528fdc4e8",
+    "data": [
+      {
+        "text": "aweh",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

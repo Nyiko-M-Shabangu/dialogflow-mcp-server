@@ -1,0 +1,172 @@
+{
+  "complete_order": {
+    "properties": {
+      "customer_name": {
+        "title": "Customer Name",
+        "type": "string"
+      },
+      "customer_phone": {
+        "title": "Customer Phone",
+        "type": "string"
+      },
+      "delivery_address": {
+        "default": "Counter Collection",
+        "title": "Delivery Address",
+        "type": "string"
+      },
+      "items": {
+        "items": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "title": "Items",
+        "type": "array"
+      }
+    },
+    "required": [
+      "customer_name",
+      "customer_phone",
+      "items"
+    ],
+    "title": "complete_orderArguments",
+    "type": "object"
+  },
+  "detect_intent": {
+    "properties": {
+      "language_code": {
+        "default": "en",
+        "title": "Language Code",
+        "type": "string"
+      },
+      "session_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Session Id"
+      },
+      "text": {
+        "title": "Text",
+        "type": "string"
+      }
+    },
+    "required": [
+      "text"
+    ],
+    "title": "detect_intentArguments",
+    "type": "object"
+  },
+  "get_conversation_logs": {
+    "properties": {
+      "limit": {
+        "default": 20,
+        "title": "Limit",
+        "type": "integer"
+      },
+      "session_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Session Id"
+      }
+    },
+    "title": "get_conversation_logsArguments",
+    "type": "object"
+  },
+  "get_food_item_details": {
+    "properties": {
+      "food_name": {
+        "title": "Food Name",
+        "type": "string"
+      }
+    },
+    "required": [
+      "food_name"
+    ],
+    "title": "get_food_item_detailsArguments",
+    "type": "object"
+  },
+  "get_menu": {
+    "properties": {
+      "category": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Category"
+      }
+    },
+    "title": "get_menuArguments",
+    "type": "object"
+  },
+  "get_recent_orders": {
+    "properties": {
+      "limit": {
+        "default": 10,
+        "title": "Limit",
+        "type": "integer"
+      },
+      "status": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Status"
+      }
+    },
+    "title": "get_recent_ordersArguments",
+    "type": "object"
+  },
+  "track_order": {
+    "properties": {
+      "order_id": {
+        "title": "Order Id",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "order_id"
+    ],
+    "title": "track_orderArguments",
+    "type": "object"
+  },
+  "update_order_status": {
+    "properties": {
+      "new_status": {
+        "title": "New Status",
+        "type": "string"
+      },
+      "order_id": {
+        "title": "Order Id",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "order_id",
+      "new_status"
+    ],
+    "title": "update_order_statusArguments",
+    "type": "object"
+  }
+}
