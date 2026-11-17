@@ -128,6 +128,6 @@ First public release.
   publishes a GitHub Release and then the image to GHCR. Third-party actions are pinned
   to commit SHAs.
 
-[Unreleased]: https://github.com/Nyiko-Shabangu/dialogflow-mcp-server/compare/v1.1.0...HEAD
-[1.1.0]: https://github.com/Nyiko-Shabangu/dialogflow-mcp-server/compare/v1.0.0...v1.1.0
-[1.0.0]: https://github.com/Nyiko-Shabangu/dialogflow-mcp-server/releases/tag/v1.0.0
+[Unreleased]: https://github.com/Nyiko-M-Shabangu/dialogflow-mcp-server/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/Nyiko-M-Shabangu/dialogflow-mcp-server/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/Nyiko-M-Shabangu/dialogflow-mcp-server/releases/tag/v1.0.0

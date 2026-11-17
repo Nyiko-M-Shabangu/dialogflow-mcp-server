@@ -29,8 +29,8 @@ dialogflow-mcp-es = "dialogflow_mcp:main_es"
 dialogflow-mcp-remote = "dialogflow_mcp:main_remote"
 
 [project.urls]
-Repository = "https://github.com/Nyiko-Shabangu/dialogflow-mcp-server"
-Changelog = "https://github.com/Nyiko-Shabangu/dialogflow-mcp-server/blob/main/CHANGELOG.md"
+Repository = "https://github.com/Nyiko-M-Shabangu/dialogflow-mcp-server"
+Changelog = "https://github.com/Nyiko-M-Shabangu/dialogflow-mcp-server/blob/main/CHANGELOG.md"
 
 [build-system]
 requires = ["uv_build>=0.12.8,<0.13.0"]

@@ -34,7 +34,7 @@ FROM python:3.14-slim
 
 LABEL org.opencontainers.image.title="dialogflow-mcp-server" \
       org.opencontainers.image.description="Remote MCP server exposing a Dialogflow ES food-ordering agent and PostgreSQL as tools" \
-      org.opencontainers.image.source="https://github.com/Nyiko-Shabangu/dialogflow-mcp-server" \
+      org.opencontainers.image.source="https://github.com/Nyiko-M-Shabangu/dialogflow-mcp-server" \
       org.opencontainers.image.licenses="MIT"
 
 RUN useradd --system --uid 10001 --no-create-home --shell /usr/sbin/nologin app

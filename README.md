@@ -1,10 +1,10 @@
 # Dialogflow MCP Server
 
-[![CI](https://github.com/Nyiko-Shabangu/dialogflow-mcp-server/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Nyiko-Shabangu/dialogflow-mcp-server/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/Nyiko-Shabangu/dialogflow-mcp-server)](https://github.com/Nyiko-Shabangu/dialogflow-mcp-server/releases)
+[![CI](https://github.com/Nyiko-M-Shabangu/dialogflow-mcp-server/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Nyiko-M-Shabangu/dialogflow-mcp-server/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/Nyiko-M-Shabangu/dialogflow-mcp-server)](https://github.com/Nyiko-M-Shabangu/dialogflow-mcp-server/releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](pyproject.toml)
-[![Docker image on GHCR](https://img.shields.io/badge/ghcr.io-dialogflow--mcp--server-2496ED?logo=docker&logoColor=white)](https://github.com/Nyiko-Shabangu/dialogflow-mcp-server/pkgs/container/dialogflow-mcp-server)
+[![Docker image on GHCR](https://img.shields.io/badge/ghcr.io-dialogflow--mcp--server-2496ED?logo=docker&logoColor=white)](https://github.com/Nyiko-M-Shabangu/dialogflow-mcp-server/pkgs/container/dialogflow-mcp-server)
 
 A [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server that turns a Google **Dialogflow ES** food-ordering agent and its **PostgreSQL** backend into tools any AI client can call. Claude, Cursor or your own LLM app can understand a customer's message through Dialogflow, look up the menu, place an atomic order and track it, all through standard MCP tool calls. The remote server runs over Streamable HTTP with Bearer-token auth and a separate admin role, and keeps every database and Google credential on the server. The Dialogflow agent is versioned as code and measured with an NLU eval harness.
 
@@ -70,7 +70,7 @@ Prerequisites: Python 3.10+, [`uv`](https://docs.astral.sh/uv/), Docker, and a G
 ### 1. Local, over stdio
 
 ```bash
-git clone https://github.com/Nyiko-Shabangu/dialogflow-mcp-server.git
+git clone https://github.com/Nyiko-M-Shabangu/dialogflow-mcp-server.git
 cd dialogflow-mcp-server
 uv sync
 docker compose up -d                      # Postgres 17 on 127.0.0.1:5433: schema, menu, demo orders
