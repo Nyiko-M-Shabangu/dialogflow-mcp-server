@@ -828,6 +828,114 @@ class TestDetectIntentAndNormalization:
         assert result["contexts"] == []
 
 
+class TestOrderLineAdapter:
+    """detect_intent derives flat food_Item/number from the composite order_line param."""
+
+    def test_without_order_line_params_are_unchanged(self):
+        params = {"food_Item": ["Kota"], "number": [2.0]}
+        assert server_es._with_flat_order_params(params) is params
+
+    def test_mixed_a_and_digit_quantities_stay_aligned(self):
+        params = {
+            "order_line": [
+                {"food_Item": "Kota", "number": "1"},  # "a kota" (word entity -> "1")
+                {"number": 2.0, "food_Item": "Bunny Chow"},  # "2 bunny chows" (@sys.number)
+            ]
+        }
+        out = server_es._with_flat_order_params(params)
+        assert out["food_Item"] == ["Kota", "Bunny Chow"]
+        assert out["number"] == [1, 2]
+        assert all(isinstance(n, int) for n in out["number"])
+        assert out["order_line"] == params["order_line"]  # kept unchanged
+
+    def test_duplicates_and_missing_number(self):
+        params = {
+            "order_line": [
+                {"food_Item": "Sosaties", "number": 2.0},
+                {"food_Item": "Boerewors Roll", "number": 2.0},
+                {"food_Item": "Bunny Chow"},  # no quantity -> 1
+                {"food_Item": "Bunny Chow", "number": 3},
+            ]
+        }
+        out = server_es._with_flat_order_params(params)
+        assert out["food_Item"] == ["Sosaties", "Boerewors Roll", "Bunny Chow", "Bunny Chow"]
+        assert out["number"] == [2, 2, 1, 3]
+
+    def test_malformed_lines_are_skipped_and_flat_params_overridden(self):
+        params = {
+            "food_Item": ["stale"],
+            "number": [9],
+            "order_line": [
+                {"number": 2.0},
+                "junk",
+                {"food_Item": ["Kota"], "number": "x"},
+                {"food_Item": " "},
+            ],
+        }
+        out = server_es._with_flat_order_params(params)
+        assert out["food_Item"] == ["Kota"]
+        assert out["number"] == [1]
+
+    @pytest.mark.parametrize(
+        ("raw", "expected"),
+        [(None, 1), ("", 1), (True, 1), ("nan", 1), ("inf", 1), ("2", 2), (1.5, 1.5)],
+    )
+    def test_quantity_normalisation(self, raw, expected):
+        assert server_es._int_quantity(raw) == expected
+
+    def test_single_object_and_empty_list(self):
+        assert server_es._with_flat_order_params(
+            {"order_line": {"food_Item": "Vetkoek", "number": 12.0}}
+        ) == {
+            "order_line": {"food_Item": "Vetkoek", "number": 12.0},
+            "food_Item": ["Vetkoek"],
+            "number": [12],
+        }
+        assert server_es._with_flat_order_params({"order_line": []}) == {
+            "order_line": [],
+            "food_Item": [],
+            "number": [],
+        }
+
+    def test_detect_intent_returns_and_logs_derived_params(self, monkeypatch):
+        from google.cloud import dialogflow_v2 as df
+
+        class FakeSessionsClient:
+            def detect_intent(self, request):
+                return df.DetectIntentResponse(
+                    query_result=df.QueryResult(
+                        fulfillment_text="Added to your order. Anything else?",
+                        all_required_params_present=True,
+                        intent=df.Intent(display_name="order.add"),
+                        intent_detection_confidence=1.0,
+                        parameters={
+                            "order_line": [
+                                {"food_Item": "Kota", "number": "1"},
+                                {"food_Item": "Bunny Chow", "number": 2},
+                            ]
+                        },
+                    )
+                )
+
+        logged = {}
+        monkeypatch.setattr(server_es, "PROJECT", "sa-food-bot")
+        monkeypatch.setattr(server_es, "LOCATION", "global")
+        monkeypatch.setattr(server_es, "ENVIRONMENT", "")
+        monkeypatch.setattr(server_es, "_sessions_client", lambda: FakeSessionsClient())
+        monkeypatch.setattr(
+            server_es, "execute", lambda sql, params: logged.setdefault("p", params)
+        )
+
+        result = call(server_es.detect_intent, "a kota and 2 bunny chows", session_id="s-1")
+        assert result["parameters"]["food_Item"] == ["Kota", "Bunny Chow"]
+        assert result["parameters"]["number"] == [1, 2]
+        assert result["parameters"]["order_line"] == [
+            {"food_Item": "Kota", "number": "1"},
+            {"food_Item": "Bunny Chow", "number": 2.0},
+        ]
+        assert json.loads(logged["p"][4])["number"] == [1, 2]
+
+
 class TestServerEsDatabaseToolsMocked:
     """Unit tests for server_es DB tools with mocked database helpers (no live Postgres)."""
 

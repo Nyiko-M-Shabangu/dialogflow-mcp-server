@@ -7,6 +7,7 @@
 import functools
 import json
 import logging
+import math
 import os
 import re
 import threading
@@ -288,6 +289,50 @@ def _session_path(
     return f"{parent}/sessions/{session_id}"
 
 
+def _int_quantity(value: Any) -> int | float:
+    """Order-line quantity -> int when whole ("1" from a word entity, 2.0 from @sys.number).
+
+    A missing, blank, boolean, non-numeric or non-finite value counts as 1.
+    """
+    if value is None or value == "" or isinstance(value, bool):
+        return 1
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return 1
+    if not math.isfinite(number):
+        return 1
+    return int(number) if number.is_integer() else number
+
+
+def _with_flat_order_params(params: dict[str, Any]) -> dict[str, Any]:
+    """Adapter for an agent that returns a composite `order_line` parameter.
+
+    When `order_line` (a list of {"food_Item", "number"?}) is present, derive the
+    flat, aligned `food_Item` (names in utterance order) and `number` (quantities,
+    missing -> 1) that existing consumers read, and keep `order_line` unchanged.
+    Without `order_line` the parameters are returned exactly as Dialogflow sent them.
+    """
+    lines = params.get("order_line")
+    if lines is None:
+        return params
+    if not isinstance(lines, list):
+        lines = [lines]
+    foods: list[str] = []
+    numbers: list[int | float] = []
+    for line in lines:
+        if not isinstance(line, dict):
+            continue
+        food = line.get("food_Item")
+        if isinstance(food, list):
+            food = food[0] if food else None
+        if not isinstance(food, str) or not food.strip():
+            continue
+        foods.append(food.strip())
+        numbers.append(_int_quantity(line.get("number")))
+    return {**params, "food_Item": foods, "number": numbers}
+
+
 @mcp.tool()
 async def detect_intent(
     text: str,
@@ -296,9 +341,15 @@ async def detect_intent(
 ) -> dict:
     """Send a user message to the Dialogflow ES Food Ordering agent.
     Returns the bot reply (fulfillment text, may be empty), matched intent
-    (new.order, order.add, order_remove, order.complete, track.order), extracted
-    parameters (food_Item: list of exact menu names; number: list of quantities
-    for order.add, or the order ID for track.order), and active contexts.
+    (new.order, order.add, order_remove, order.complete, track.order, menu.ask;
+    menu.ask is a menu, price or availability question and never adds to the
+    order), extracted parameters (food_Item: list of exact menu names; number:
+    list of quantities for order.add, or the order ID for track.order. number
+    can be shorter than food_Item because "a kota" yields no quantity: treat a
+    missing quantity as 1 and do not pair the lists by position. When the
+    optional order_line, a list of {food_Item, number} pairs for order.add, is
+    present, prefer it: food_Item/number are then derived from it, aligned, with
+    a missing number set to 1), and active contexts.
     Logs the conversation turn to the PostgreSQL database.
     session_id (optional): 1-36 characters of letters, digits, '-' or '_'."""
     return await _run_db(_detect_intent, text, session_id, language_code)
@@ -357,7 +408,7 @@ def _detect_intent(text: Any, session_id: Any, language_code: Any) -> dict[str, 
     intent_name = result.intent.display_name if result.intent else None
     confidence = result.intent_detection_confidence
     fulfillment = result.fulfillment_text
-    extracted_params = MessageToDict(result._pb).get("parameters", {})
+    extracted_params = _with_flat_order_params(MessageToDict(result._pb).get("parameters", {}))
 
     # Log interaction to PostgreSQL
     try:
